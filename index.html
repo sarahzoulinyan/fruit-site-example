@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Avora Mart</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- RESET & GLOBAL --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(135deg, #f6f9f4 0%, #ffffff 50%, #eef8e7 100%);
+            color: #1a1a1a; 
+            overflow-x: hidden; 
+            width: 100%;
+            min-height: 100vh;
+        }
+        a { text-decoration: none; color: inherit; }
+        button { cursor: pointer; border: none; outline: none; background: none; }
+        img { max-width: 100%; display: block; }
+
+        /* --- SCROLLBAR --- */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f0f2f5; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #8bc34a, #33691e); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #7cb342, #1b5e20); }
+        * { scrollbar-width: thin; scrollbar-color: #8bc34a #f0f2f5; }
+
+        /* --- SPLASH SCREEN --- */
+        #splash-screen {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(145deg, #c5e1a5, #8bc34a);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 99999; transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        #splash-screen.hide { opacity: 0; transform: scale(1.5) rotate(10deg); pointer-events: none; }
+        .splash-logo { font-size: 5rem; font-weight: 900; color: #1b5e20; letter-spacing: -3px; display: flex; align-items: center; gap: 10px; margin-bottom: 20px; animation: pulseLogo 1.5s infinite alternate; }
+        .splash-logo i { font-size: 4rem; }
+        @keyframes pulseLogo {
+            0% { transform: scale(1); opacity: 0.8; text-shadow: 0 0 0 rgba(0,0,0,0); }
+            100% { transform: scale(1.05); opacity: 1; text-shadow: 0 0 30px rgba(255,255,255,0.3); }
+        }
+        .splash-sub { color: #33691e; font-size: 1.2rem; letter-spacing: 3px; font-weight: 600; }
+        .loader-splash { margin-top: 40px; width: 60px; height: 60px; border: 6px solid rgba(255,255,255,0.2); border-radius: 50%; border-top-color: #fff; animation: spin 1s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* --- APP WRAPPER --- */
+        #app-wrapper { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            min-height: 100vh; 
+            background: transparent; 
+            opacity: 0; 
+            transition: opacity 0.5s; 
+            padding: 20px;
+        }
+        #app-wrapper.show { opacity: 1; }
+        .app-content { 
+            width: 100%; 
+            max-width: 100%; 
+            background: #ffffff; 
+            position: relative; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        /* --- LOGIN CARD --- */
+        #screen-login {
+            display: none; 
+            flex-direction: column; 
+            justify-content: center; 
+            min-height: 100vh; 
+            padding: 30px 20px;
+            background: transparent; 
+            max-width: 480px; 
+            margin: 0 auto;
+            animation: fadeUp 0.6s ease forwards;
+        }
+        #screen-login.active { display: flex; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        #screen-login .login-wrapper {
+            background: #ffffff;
+            border-radius: 32px;
+            padding: 48px 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.04);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.5);
+            transition: all 0.3s ease;
+        }
+
+        #screen-login .login-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #33691e;
+        }
+        #screen-login .login-brand i {
+            font-size: 2.2rem;
+            color: #8bc34a;
+            background: #e8f5e9;
+            padding: 10px;
+            border-radius: 16px;
+        }
+
+        #screen-login .login-header { margin-bottom: 32px; }
+        #screen-login .login-header h1 { 
+            font-size: 2.2rem; 
+            font-weight: 800; 
+            color: #1a1a1a; 
+            margin-bottom: 8px; 
+            line-height: 1.2; 
+        }
+        #screen-login .login-header h1 span { color: #8bc34a; }
+        #screen-login .login-header p { color: #666; font-size: 1rem; }
+
+        /* --- INPUTS MELHORADOS --- */
+        .input-group { margin-bottom: 20px; }
+        .input-group label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: 600; 
+            color: #444; 
+            font-size: 0.9rem; 
+            letter-spacing: 0.3px;
+        }
+        .input-group input { 
+            width: 100%; 
+            padding: 16px 18px; 
+            background: #f7f9f8; 
+            border: 2px solid transparent; 
+            border-radius: 14px; 
+            font-size: 1rem; 
+            transition: all 0.3s ease;
+            color: #1a1a1a;
+        }
+        .input-group input:focus { 
+            border-color: #7bc043; 
+            background: #ffffff; 
+            box-shadow: 0 0 0 4px rgba(123,192,67,0.12);
+            outline: none; 
+        }
+        .input-group input::placeholder { color: #aaa; }
+
+        /* --- LOGIN OPTIONS --- */
+        .login-options { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 28px; 
+            font-size: 0.9rem; 
+        }
+        .login-options label { 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            color: #666; 
+            cursor: pointer; 
+        }
+        .login-options label input[type="checkbox"] { 
+            accent-color: #8bc34a; 
+            width: 18px; 
+            height: 18px; 
+            cursor: pointer;
+        }
+        .login-options a { 
+            color: #8bc34a; 
+            font-weight: 600; 
+            transition: 0.3s; 
+        }
+        .login-options a:hover { color: #689f38; text-decoration: underline; }
+
+        /* --- BOTÃO MELHORADO --- */
+        .btn-login { 
+            width: 100%; 
+            padding: 18px; 
+            background: #8bc34a; 
+            color: white; 
+            border-radius: 50px; 
+            font-size: 1.1rem; 
+            font-weight: 700; 
+            transition: all 0.25s ease; 
+            margin-bottom: 28px; 
+            box-shadow: 0 4px 16px rgba(139,195,74,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .btn-login:hover { 
+            background: #689f38; 
+            transform: translateY(-2px); 
+            box-shadow: 0 12px 30px rgba(118,192,67,0.35); 
+        }
+        .btn-login:active { transform: translateY(0); }
+
+        /* --- SOCIAL DIVIDER --- */
+        .social-divider { 
+            text-align: center; 
+            color: #999; 
+            position: relative; 
+            margin-bottom: 28px; 
+            font-size: 0.9rem;
+        }
+        .social-divider::before,
+        .social-divider::after { 
+            content: ''; 
+            position: absolute; 
+            top: 50%; 
+            width: 30%; 
+            height: 1.5px; 
+            background: linear-gradient(to right, transparent, #e0e0e0); 
+        }
+        .social-divider::before { left: 0; }
+        .social-divider::after { 
+            right: 0; 
+            background: linear-gradient(to left, transparent, #e0e0e0); 
+        }
+
+        /* --- SOCIAL BUTTONS --- */
+        .social-btns { display: flex; gap: 12px; }
+        .social-btn { 
+            flex: 1; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 10px; 
+            padding: 14px; 
+            background: #f8f9fa; 
+            border: 1.5px solid #e8eaed; 
+            border-radius: 14px; 
+            font-weight: 600; 
+            transition: all 0.25s ease;
+            font-size: 0.95rem;
+        }
+        .social-btn:hover { 
+            background: #ffffff; 
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06); 
+            transform: translateY(-2px);
+            border-color: #d0d4d9;
+        }
+        .social-btn.google { color: #db4437; }
+        .social-btn.apple { color: #000; }
+
+        /* --- LOGIN FOOTER --- */
+        .login-footer { 
+            text-align: center; 
+            margin-top: 32px; 
+            color: #666; 
+            font-size: 0.95rem;
+        }
+        .login-footer a { 
+            color: #8bc34a; 
+            font-weight: 700; 
+            transition: 0.3s; 
+        }
+        .login-footer a:hover { color: #689f38; text-decoration: underline; }
+
+        /* ============================================
+           DESKTOP NAV (72px de altura)
+           ============================================ */
+        .desktop-nav { 
+            display: none; 
+            background: #ffffff; 
+            padding: 0 40px; 
+            height: 72px;
+            border-bottom: 1px solid #eee; 
+            align-items: center; 
+            justify-content: space-between; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+        }
+        .desktop-nav .logo { 
+            font-size: 1.6rem; 
+            font-weight: 700; 
+            color: #33691e; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+        }
+        .desktop-nav .logo i { 
+            font-size: 1.8rem;
+            color: #8bc34a; 
+        }
+        .desktop-nav .links { 
+            display: flex; 
+            gap: 40px;
+            font-weight: 500; 
+            color: #555; 
+        }
+        .desktop-nav .links a { 
+            padding: 5px 0; 
+            border-bottom: 3px solid transparent; 
+            transition: 0.3s; 
+            font-size: 0.95rem;
+        }
+        .desktop-nav .links a:hover, 
+        .desktop-nav .links a.active { 
+            color: #33691e; 
+            border-bottom-color: #8bc34a; 
+        }
+        .desktop-nav .actions { 
+            display: flex; 
+            gap: 24px; 
+            font-size: 1.2rem; 
+            color: #333; 
+        }
+        .desktop-nav .actions .cart-badge { position: relative; }
+        .desktop-nav .actions .cart-badge span { 
+            position: absolute; 
+            top: -8px; 
+            right: -8px; 
+            background: #e53935; 
+            color: white; 
+            font-size: 0.6rem; 
+            padding: 2px 6px; 
+            border-radius: 50%; 
+            font-weight: bold; 
+        }
+
+        /* --- MOBILE HEADER --- */
+        .mobile-header { 
+            display: none; 
+            background: #ffffff; 
+            padding: 12px 20px; 
+            height: 64px;
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03); 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+        }
+        .user-info h2 { 
+            font-size: 1.1rem; 
+            font-weight: 700; 
+            color: #1a1a1a; 
+            display: flex; 
+            align-items: center; 
+            gap: 5px; 
+        }
+        .user-info h2 i { color: #8bc34a; }
+        .user-info p { 
+            font-size: 0.8rem; 
+            color: #777; 
+            display: flex; 
+            align-items: center; 
+            gap: 5px; 
+            margin-top: 2px; 
+        }
+        .header-actions { 
+            display: flex; 
+            gap: 15px; 
+            align-items: center; 
+            font-size: 1.2rem; 
+            color: #333; 
+        }
+        .header-actions .cart-badge { position: relative; }
+        .header-actions .cart-badge span { 
+            position: absolute; 
+            top: -8px; 
+            right: -8px; 
+            background: #e53935; 
+            color: white; 
+            font-size: 0.6rem; 
+            padding: 2px 6px; 
+            border-radius: 50%; 
+            font-weight: bold; 
+        }
+
+        /* --- BOTTOM NAV --- */
+        .bottom-nav { 
+            display: none; 
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            background: white; 
+            padding: 10px 0; 
+            padding-bottom: calc(10px + env(safe-area-inset-bottom)); 
+            border-top: 1px solid #eee; 
+            box-shadow: 0 -2px 15px rgba(0,0,0,0.05); 
+            justify-content: space-around; 
+            z-index: 999; 
+        }
+        .bottom-nav.show { display: flex; }
+        .nav-item { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            color: #999; 
+            font-size: 0.65rem; 
+            font-weight: 500; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            gap: 3px; 
+            padding: 4px 12px; 
+            border-radius: 10px; 
+            position: relative; 
+        }
+        .nav-item i { font-size: 1.4rem; transition: 0.3s; }
+        .nav-item.active { color: #33691e; }
+        .nav-item.active i { transform: translateY(-2px); }
+        .nav-item .nav-badge { 
+            position: absolute; 
+            top: 0; 
+            right: 0; 
+            background: #e53935; 
+            color: white; 
+            font-size: 0.55rem; 
+            padding: 1px 6px; 
+            border-radius: 50%; 
+            font-weight: bold; 
+        }
+
+        /* ============================================
+           SEARCH AREA (com margin-top de 28px)
+           ============================================ */
+        .search-area { 
+            padding: 0 20px 0; 
+            background: #fff; 
+            display: none; 
+            margin-top: 28px;
+            margin-bottom: 0;
+        }
+        .search-area.show { display: block; }
+        .search-box { 
+            background: #f3f4f6; 
+            border-radius: 14px; 
+            padding: 14px 18px; 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            transition: 0.3s;
+        }
+        .search-box:focus-within {
+            box-shadow: 0 0 0 3px rgba(139,195,74,0.15);
+        }
+        .search-box i { color: #999; font-size: 1.1rem; }
+        .search-box input { 
+            border: none; 
+            background: transparent; 
+            width: 100%; 
+            font-size: 0.95rem; 
+            outline: none; 
+            color: #333; 
+        }
+        .search-box input::placeholder { color: #aaa; }
+
+        /* --- SCREENS --- */
+        .screen { 
+            display: none; 
+            flex: 1; 
+            padding: 0 20px 90px 20px; 
+            animation: fadeSlide 0.4s ease forwards; 
+        }
+        .screen.active { display: block; }
+        @keyframes fadeSlide { 
+            from { opacity: 0; transform: translateY(15px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        /* ============================================
+           TELAS COM HEADER (padding-top extra)
+           ============================================ */
+        #screen-orders.active,
+        #screen-chat.active,
+        #screen-profile.active {
+            padding-top: 32px; /* Espaçamento do header */
+        }
+
+        /* ============================================
+           BANNER (com margin-top de 28px)
+           ============================================ */
+        .banner-promo {
+            background: linear-gradient(135deg, #33691e 0%, #8bc34a 100%); 
+            border-radius: 24px; 
+            padding: 32px 35px;
+            margin-top: 28px;
+            margin-bottom: 36px;
+            color: white; 
+            position: relative; 
+            overflow: hidden; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            min-height: 180px;
+        }
+        .banner-promo::before { 
+            content: ''; 
+            position: absolute; 
+            top: -50%; 
+            right: -20%; 
+            width: 250px; 
+            height: 250px; 
+            background: rgba(255,255,255,0.05); 
+            border-radius: 50%; 
+        }
+        .banner-promo .tag { 
+            background: rgba(255,255,255,0.2); 
+            padding: 4px 14px; 
+            border-radius: 20px; 
+            font-size: 0.7rem; 
+            display: inline-block; 
+            margin-bottom: 10px; 
+            font-weight: 600; 
+            letter-spacing: 0.5px; 
+        }
+        .banner-promo h1 { 
+            font-size: 2.2rem; 
+            font-weight: 800; 
+            line-height: 1.1; 
+            margin-bottom: 16px; 
+        }
+        .banner-promo button { 
+            background: white; 
+            color: #33691e; 
+            padding: 12px 30px; 
+            border-radius: 30px; 
+            font-weight: 700; 
+            font-size: 0.95rem; 
+            transition: 0.3s; 
+        }
+        .banner-promo button:hover { 
+            transform: scale(1.05); 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); 
+        }
+        .banner-img { 
+            width: 130px;
+            height: 130px; 
+            object-fit: contain; 
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.2)); 
+            animation: float 3s ease-in-out infinite; 
+        }
+        @keyframes float { 
+            0%,100% { transform: translateY(0) rotate(-2deg); } 
+            50% { transform: translateY(-12px) rotate(2deg); } 
+        }
+
+        /* --- PRODUCTS --- */
+        .section-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 18px; 
+        }
+        .section-header h3 { 
+            font-size: 1.3rem; 
+            font-weight: 700; 
+            color: #1a1a1a; 
+        }
+        .section-header a { 
+            color: #8bc34a; 
+            font-size: 0.9rem; 
+            font-weight: 600; 
+            transition: 0.3s; 
+        }
+        .section-header a:hover { color: #33691e; }
+
+        /* --- CATEGORIAS --- */
+        .categories-scroll { 
+            display: flex; 
+            gap: 18px; 
+            overflow-x: auto; 
+            padding-bottom: 10px; 
+            margin-bottom: 36px;
+            scroll-snap-type: x mandatory; 
+        }
+        .categories-scroll::-webkit-scrollbar { display: none; }
+        .cat-item { 
+            scroll-snap-align: start; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-width: 80px; 
+            cursor: pointer; 
+            transition: 0.3s; 
+        }
+        .cat-item:hover { transform: translateY(-5px); }
+        .cat-circle { 
+            width: 68px; 
+            height: 68px; 
+            background: #e8f5e9; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: #33691e; 
+            font-size: 1.8rem; 
+            margin-bottom: 10px; 
+            transition: 0.3s; 
+        }
+        .cat-item:hover .cat-circle { 
+            background: #8bc34a; 
+            color: white; 
+            transform: scale(1.1); 
+        }
+        .cat-item span { 
+            font-size: 0.8rem; 
+            font-weight: 600; 
+            color: #444; 
+        }
+
+        /* --- FLASH DEAL --- */
+        .flash-deal-timer { display: flex; gap: 5px; align-items: center; }
+        .timer-box { 
+            background: #33691e; 
+            color: white; 
+            padding: 4px 10px; 
+            border-radius: 8px; 
+            font-size: 0.85rem; 
+            font-weight: 700; 
+            min-width: 32px; 
+            text-align: center; 
+        }
+        .timer-sep { font-weight: 700; color: #33691e; }
+
+        /* --- PRODUCT GRID --- */
+        .product-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 24px;
+            margin-bottom: 24px; 
+        }
+        .product-card { 
+            background: white; 
+            border-radius: 18px; 
+            padding: 18px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+            transition: 0.3s; 
+            position: relative; 
+            border: 1px solid #f0f0f0; 
+        }
+        .product-card:hover { 
+            transform: translateY(-6px); 
+            box-shadow: 0 8px 35px rgba(0,0,0,0.1); 
+        }
+        .product-card img { 
+            width: 100%; 
+            height: 120px; 
+            object-fit: contain; 
+            margin: 0 auto 12px; 
+            transition: 0.3s; 
+        }
+        .product-card:hover img { transform: scale(1.05); }
+        .product-card .discount { 
+            position: absolute; 
+            top: 12px; 
+            left: 12px; 
+            background: #e53935; 
+            color: white; 
+            padding: 2px 12px; 
+            border-radius: 12px; 
+            font-size: 0.7rem; 
+            font-weight: 700; 
+        }
+        .product-card .favorite { 
+            position: absolute; 
+            top: 12px; 
+            right: 12px; 
+            color: #ddd; 
+            font-size: 1.2rem; 
+            transition: 0.3s; 
+        }
+        .product-card .favorite:hover { 
+            color: #e53935; 
+            transform: scale(1.2); 
+        }
+        .product-card h4 { 
+            font-size: 1rem; 
+            font-weight: 600; 
+            margin-bottom: 4px; 
+            color: #1a1a1a; 
+        }
+        .product-card .weight { 
+            font-size: 0.75rem; 
+            color: #999; 
+            margin-bottom: 6px; 
+        }
+        .product-card .rating { 
+            font-size: 0.8rem; 
+            color: #fbc02d; 
+            margin-bottom: 10px; 
+        }
+        .product-card .rating span { color: #999; margin-left: 3px; }
+        .product-footer { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .product-footer .price { 
+            font-weight: 700; 
+            font-size: 1.15rem; 
+            color: #1a1a1a; 
+        }
+        .product-footer .price .old { 
+            color: #999; 
+            font-weight: 400; 
+            font-size: 0.8rem; 
+            text-decoration: line-through; 
+            margin-left: 5px; 
+        }
+        .add-cart { 
+            background: #8bc34a; 
+            color: white; 
+            width: 34px; 
+            height: 34px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            transition: 0.3s; 
+        }
+        .add-cart:hover { 
+            background: #689f38; 
+            transform: rotate(90deg) scale(1.1); 
+        }
+
+        /* --- ORDERS --- */
+        .orders-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .orders-header h2 { font-size: 1.8rem; font-weight: 700; }
+        .orders-header .filter-icon { color: #8bc34a; font-size: 1.2rem; cursor: pointer; padding: 8px 12px; border-radius: 10px; background: #f5f5f5; transition: 0.3s; }
+        .orders-header .filter-icon:hover { background: #e8f5e9; }
+        .orders-sub { color: #666; margin-bottom: 20px; font-size: 0.9rem; }
+        .tabs { display: flex; gap: 5px; margin-bottom: 20px; border-bottom: 1px solid #eee; overflow-x: auto; padding-bottom: 0; }
+        .tabs span { padding: 10px 16px; font-weight: 600; color: #999; cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; transition: 0.3s; font-size: 0.9rem; }
+        .tabs span:hover { color: #33691e; }
+        .tabs span.active { color: #33691e; border-bottom-color: #8bc34a; }
+        .order-card { background: white; border-radius: 16px; padding: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); margin-bottom: 15px; display: flex; gap: 15px; border: 1px solid #f0f0f0; transition: 0.3s; }
+        .order-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+        .order-card img { width: 60px; height: 60px; object-fit: cover; border-radius: 12px; }
+        .order-info { flex: 1; }
+        .order-info h4 { font-size: 1rem; margin-bottom: 2px; font-weight: 600; }
+        .order-info .order-id { font-size: 0.75rem; color: #999; margin-bottom: 2px; }
+        .order-info .order-date { font-size: 0.75rem; color: #999; }
+        .order-status { text-align: right; min-width: 100px; }
+        .status-badge { font-size: 0.7rem; padding: 4px 12px; border-radius: 20px; font-weight: 600; display: inline-block; margin-bottom: 8px; }
+        .status-badge.delivered { background: #e8f5e9; color: #2e7d32; }
+        .status-badge.processing { background: #fff3e0; color: #e65100; }
+        .status-badge.shipped { background: #e3f2fd; color: #0d47a1; }
+        .status-badge.cancelled { background: #fce4ec; color: #c62828; }
+        .order-amount { font-weight: 700; font-size: 1.1rem; display: block; margin-bottom: 5px; }
+        .order-btn { border: 1px solid #ddd; padding: 4px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: #333; background: white; transition: 0.3s; }
+        .order-btn:hover { background: #f5f5f5; border-color: #bbb; }
+        .order-btn.track { background: #8bc34a; color: white; border: none; }
+        .order-btn.track:hover { background: #689f38; }
+
+        /* --- CHAT --- */
+        .chat-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .chat-header h2 { font-size: 1.8rem; font-weight: 700; }
+        .chat-header .new-chat { color: #8bc34a; font-size: 1.2rem; padding: 8px 14px; border-radius: 10px; background: #f5f5f5; transition: 0.3s; cursor: pointer; }
+        .chat-header .new-chat:hover { background: #e8f5e9; }
+        .chat-item { display: flex; align-items: center; gap: 15px; padding: 15px; border-radius: 12px; transition: 0.3s; cursor: pointer; }
+        .chat-item:hover { background: #f8f9fa; }
+        .chat-avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; position: relative; flex-shrink: 0; }
+        .chat-avatar.online::after { content: ''; width: 12px; height: 12px; background: #4caf50; border: 2px solid white; border-radius: 50%; position: absolute; bottom: 0; right: 0; }
+        .chat-avatar.support { background: #e8f5e9; color: #8bc34a; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .chat-info { flex: 1; }
+        .chat-info h4 { font-size: 0.95rem; margin-bottom: 2px; font-weight: 600; }
+        .chat-info p { font-size: 0.85rem; color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; }
+        .chat-meta { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 5px; flex-shrink: 0; }
+        .chat-meta .time { font-size: 0.7rem; color: #999; }
+        .chat-badge { background: #8bc34a; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: bold; }
+
+        /* --- PROFILE --- */
+        .profile-header { text-align: center; padding: 30px 0 25px; border-bottom: 1px solid #f0f0f0; margin-bottom: 20px; }
+        .profile-avatar { width: 90px; height: 90px; background: linear-gradient(135deg, #e8f5e9, #c5e1a5); border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #33691e; position: relative; }
+        .profile-avatar .edit-badge { position: absolute; bottom: 0; right: 0; background: #8bc34a; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
+        .profile-avatar .edit-badge:hover { transform: scale(1.1); }
+        .profile-header h2 { font-size: 1.4rem; margin-bottom: 5px; font-weight: 700; }
+        .profile-header .email { color: #666; font-size: 0.9rem; }
+        .profile-header .member-since { color: #999; font-size: 0.75rem; margin-top: 5px; }
+        .profile-section-title { color: #999; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; margin: 20px 0 10px; padding-left: 15px; text-transform: uppercase; }
+        .profile-menu-item { display: flex; align-items: center; gap: 15px; padding: 14px 15px; border-radius: 12px; transition: 0.3s; cursor: pointer; }
+        .profile-menu-item:hover { background: #f8f9fa; }
+        .profile-menu-item .icon { width: 20px; color: #8bc34a; font-size: 1.1rem; }
+        .profile-menu-item span { flex: 1; font-weight: 500; font-size: 0.95rem; }
+        .profile-menu-item .arrow { color: #ccc; transition: 0.3s; }
+        .profile-menu-item:hover .arrow { color: #8bc34a; transform: translateX(3px); }
+        .logout-btn { display: flex; align-items: center; gap: 15px; padding: 14px 15px; border-radius: 12px; transition: 0.3s; cursor: pointer; color: #e53935; margin-top: 10px; }
+        .logout-btn:hover { background: #fce4ec; }
+        .logout-btn .icon { width: 20px; font-size: 1.1rem; }
+        .logout-btn span { font-weight: 600; font-size: 0.95rem; }
+
+        /* ============================================
+           RESPONSIVE - Garantir que nav não aparece no login
+           ============================================ */
+        @media (max-width: 1023px) {
+            /* Força o nav a ficar escondido quando o login está ativo */
+            body:has(#screen-login.active) .mobile-header,
+            body:has(#screen-login.active) .bottom-nav {
+                display: none !important;
+            }
+            body:has(#screen-login.active) .desktop-nav {
+                display: none !important;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .desktop-nav { display: flex; }
+            .app-content { 
+                max-width: 1400px; 
+                margin: 0 auto; 
+                background: #fff; 
+                box-shadow: 0 0 30px rgba(0,0,0,0.05); 
+                border-radius: 24px; 
+                min-height: 90vh; 
+            }
+            #screen-login { min-height: 90vh; padding: 40px; }
+            #screen-login .login-wrapper { padding: 56px 48px; }
+            .screen { padding: 0 40px 40px 40px; }
+            
+            /* Telas com header ganham padding-top extra no desktop */
+            #screen-orders.active,
+            #screen-chat.active,
+            #screen-profile.active {
+                padding-top: 40px;
+            }
+            
+            .search-area { padding: 0 40px 0; }
+            .product-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+            .banner-promo { padding: 40px 50px; border-radius: 28px; min-height: 200px; }
+            .banner-img { width: 160px; height: 160px; }
+            .product-card { padding: 22px; }
+            .product-card img { height: 160px; }
+            .order-card { padding: 20px; }
+            .order-card img { width: 80px; height: 80px; }
+        }
+
+        @media (min-width: 769px) and (max-width: 1023px) {
+            .desktop-nav { display: none; }
+            .mobile-header { display: flex !important; }
+            .bottom-nav { display: flex !important; }
+            .product-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+            #screen-orders.active,
+            #screen-chat.active,
+            #screen-profile.active {
+                padding-top: 28px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .desktop-nav { display: none; }
+            .mobile-header { display: flex !important; }
+            .bottom-nav { display: flex !important; }
+            .app-content { max-width: 100%; border-radius: 0; min-height: 100vh; }
+            #screen-login { min-height: 100vh; padding: 20px; }
+            #screen-login .login-wrapper { padding: 32px 24px; border-radius: 24px; }
+            .product-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+            .screen { padding: 0 15px 80px 15px; }
+            #screen-orders.active,
+            #screen-chat.active,
+            #screen-profile.active {
+                padding-top: 24px;
+            }
+            .search-area { padding: 0 15px 0; margin-top: 20px; }
+            .mobile-header { padding: 12px 15px; height: 60px; }
+            .banner-promo { 
+                padding: 24px 20px; 
+                border-radius: 20px; 
+                margin-top: 20px; 
+                margin-bottom: 28px;
+                min-height: 150px;
+            }
+            .banner-promo h1 { font-size: 1.6rem; }
+            .banner-img { width: 100px; height: 100px; }
+            .categories-scroll { margin-bottom: 28px; gap: 14px; }
+        }
+
+        @media (max-width: 480px) {
+            #screen-login .login-wrapper { padding: 24px 18px; }
+            #screen-login .login-brand { font-size: 1.4rem; margin-bottom: 24px; }
+            #screen-login .login-brand i { font-size: 1.6rem; padding: 8px; }
+            #screen-login .login-header h1 { font-size: 1.6rem; }
+            .product-grid { gap: 12px; }
+            .product-card { padding: 12px; }
+            .product-card img { height: 80px; }
+            .product-footer .price { font-size: 0.95rem; }
+            .add-cart { width: 30px; height: 30px; font-size: 0.8rem; }
+            .user-info h2 { font-size: 0.9rem; }
+            .categories-scroll { gap: 10px; }
+            .cat-item { min-width: 60px; }
+            .cat-circle { width: 52px; height: 52px; font-size: 1.4rem; }
+            .order-card { flex-direction: column; align-items: flex-start; }
+            .order-status { text-align: left; width: 100%; margin-top: 10px; }
+            .chat-info p { max-width: 120px; }
+            .social-btns { flex-direction: column; }
+            .banner-promo h1 { font-size: 1.3rem; }
+            .banner-img { width: 80px; height: 80px; }
+            #screen-orders.active,
+            #screen-chat.active,
+            #screen-profile.active {
+                padding-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- SPLASH SCREEN -->
+    <div id="splash-screen">
+        <div class="splash-logo"><i class="fas fa-leaf"></i> AVORA</div>
+        <div class="splash-sub">MART</div>
+        <div class="loader-splash"></div>
+    </div>
+
+    <div id="app-wrapper">
+        <div class="app-content">
+            <!-- LOGIN -->
+            <div id="screen-login" class="screen active">
+                <div class="login-wrapper">
+                    <div class="login-brand">
+                        <i class="fas fa-leaf"></i>
+                        Avora Mart
+                    </div>
+                    <div class="login-header">
+                        <h1>Fresh groceries<br><span>delivered to you</span></h1>
+                        <p>Order quality fruits, vegetables & more</p>
+                    </div>
+                    <div class="input-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="you@example.com" value="james@example.com">
+                    </div>
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="••••••••" value="password123">
+                    </div>
+                    <div class="login-options">
+                        <label><input type="checkbox" checked> Remember me</label>
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                    <button class="btn-login" onclick="goToHome()">
+                        <i class="fas fa-arrow-right"></i> Sign In
+                    </button>
+                    <div class="social-divider">Or continue with</div>
+                    <div class="social-btns">
+                        <button class="social-btn google"><i class="fab fa-google"></i> Google</button>
+                        <button class="social-btn apple"><i class="fab fa-apple"></i> Apple</button>
+                    </div>
+                    <div class="login-footer">
+                        Don't have an account? <a href="#">Create Account</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DESKTOP NAV (72px) -->
+            <nav class="desktop-nav" id="desktop-header">
+                <div class="logo"><i class="fas fa-leaf"></i> Avora Mart</div>
+                <div class="links">
+                    <a href="#" class="active" onclick="changeScreen('screen-home', null, true)">Shop</a>
+                    <a href="#" onclick="changeScreen('screen-orders', null, true)">Orders</a>
+                    <a href="#" onclick="changeScreen('screen-chat', null, true)">Chat</a>
+                    <a href="#" onclick="changeScreen('screen-profile', null, true)">Profile</a>
+                </div>
+                <div class="actions">
+                    <i class="far fa-heart"></i>
+                    <div class="cart-badge">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>3</span>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- MOBILE HEADER -->
+            <header class="mobile-header" id="mobile-header">
+                <div class="user-info">
+                    <h2>Hi, James <i class="fas fa-leaf"></i></h2>
+                    <p><i class="fas fa-map-marker-alt"></i> Central Park, NY</p>
+                </div>
+                <div class="header-actions">
+                    <i class="far fa-bell"></i>
+                    <div class="cart-badge">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>3</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- SEARCH AREA (com margin-top) -->
+            <div class="search-area" id="global-search">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search for fresh products...">
+                </div>
+            </div>
+
+            <!-- HOME -->
+            <div id="screen-home" class="screen">
+                <div class="banner-promo">
+                    <div>
+                        <span class="tag">🔥 Limited Offer</span>
+                        <h1>50% OFF<br>Fresh Fruits</h1>
+                        <button>Shop Now →</button>
+                    </div>
+                    <img class="banner-img" src="https://pngimg.com/d/orange_PNG812.png" alt="Oranges">
+                </div>
+
+                <div class="section-header">
+                    <h3>Categories</h3>
+                    <a href="#">See All</a>
+                </div>
+                <div class="categories-scroll">
+                    <div class="cat-item"><div class="cat-circle"><i class="fas fa-apple-alt"></i></div><span>Fruits</span></div>
+                    <div class="cat-item"><div class="cat-circle"><i class="fas fa-carrot"></i></div><span>Veggie</span></div>
+                    <div class="cat-item"><div class="cat-circle"><i class="fas fa-seedling"></i></div><span>Organic</span></div>
+                    <div class="cat-item"><div class="cat-circle"><i class="fas fa-lemon"></i></div><span>Citrus</span></div>
+                    <div class="cat-item"><div class="cat-circle"><i class="fas fa-egg"></i></div><span>Dairy</span></div>
+                    <div class="cat-item"><div class="cat-circle"><i class="fas fa-bread-slice"></i></div><span>Bakery</span></div>
+                    <div class="cat-item"><div class="cat-circle"><i class="fas fa-fish"></i></div><span>Seafood</span></div>
+                    <div class="cat-item"><div class="cat-circle"><i class="fas fa-wine-bottle"></i></div><span>Beverages</span></div>
+                </div>
+
+                <div class="section-header">
+                    <h3>⚡ Flash Deal</h3>
+                    <div class="flash-deal-timer">
+                        <span class="timer-box">02</span>
+                        <span class="timer-sep">:</span>
+                        <span class="timer-box">45</span>
+                        <span class="timer-sep">:</span>
+                        <span class="timer-box">11</span>
+                        <a href="#" style="margin-left: 12px;">View All</a>
+                    </div>
+                </div>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <span class="discount">-30%</span>
+                        <i class="far fa-heart favorite"></i>
+                        <img src="https://pngimg.com/d/orange_PNG812.png" alt="Navel Orange">
+                        <h4>Navel Orange</h4>
+                        <div class="weight">1kg</div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.8 <span>(156)</span></div>
+                        <div class="product-footer">
+                            <span class="price">$4.50 <span class="old">$6.00</span></span>
+                            <button class="add-cart"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <span class="discount">-20%</span>
+                        <i class="far fa-heart favorite"></i>
+                        <img src="https://pngimg.com/d/broccoli_PNG197.png" alt="Broccoli">
+                        <h4>Organic Broccoli</h4>
+                        <div class="weight">500g</div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.9 <span>(89)</span></div>
+                        <div class="product-footer">
+                            <span class="price">$2.80 <span class="old">$3.50</span></span>
+                            <button class="add-cart"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <span class="discount">-15%</span>
+                        <i class="far fa-heart favorite"></i>
+                        <img src="https://pngimg.com/d/strawberry_PNG2596.png" alt="Strawberry">
+                        <h4>Red Strawberry</h4>
+                        <div class="weight">250g</div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.8 <span>(234)</span></div>
+                        <div class="product-footer">
+                            <span class="price">$3.40 <span class="old">$4.00</span></span>
+                            <button class="add-cart"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <span class="discount">-25%</span>
+                        <i class="far fa-heart favorite"></i>
+                        <img src="https://pngimg.com/d/avocado_PNG126.png" alt="Avocado">
+                        <h4>Fresh Avocado</h4>
+                        <div class="weight">2 units</div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7 <span>(67)</span></div>
+                        <div class="product-footer">
+                            <span class="price">$5.25 <span class="old">$7.00</span></span>
+                            <button class="add-cart"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-header">
+                    <h3>🌟 Popular Products</h3>
+                    <a href="#">See All</a>
+                </div>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <i class="far fa-heart favorite"></i>
+                        <img src="https://pngimg.com/d/banana_PNG839.png" alt="Banana">
+                        <h4>Fresh Banana</h4>
+                        <div class="weight">1kg</div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.5 <span>(342)</span></div>
+                        <div class="product-footer">
+                            <span class="price">$1.50</span>
+                            <button class="add-cart"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <i class="far fa-heart favorite"></i>
+                        <img src="https://pngimg.com/d/apple_PNG124.png" alt="Apple">
+                        <h4>Green Apple</h4>
+                        <div class="weight">1kg</div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.6 <span>(178)</span></div>
+                        <div class="product-footer">
+                            <span class="price">$3.20</span>
+                            <button class="add-cart"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <i class="far fa-heart favorite"></i>
+                        <img src="https://pngimg.com/d/lemon_PNG832.png" alt="Lemon">
+                        <h4>Fresh Lemon</h4>
+                        <div class="weight">500g</div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.3 <span>(92)</span></div>
+                        <div class="product-footer">
+                            <span class="price">$2.10</span>
+                            <button class="add-cart"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <i class="far fa-heart favorite"></i>
+                        <img src="https://pngimg.com/d/grape_PNG14.png" alt="Grape">
+                        <h4>Red Grapes</h4>
+                        <div class="weight">500g</div>
+                        <div class="rating"><i class="fas fa-star"></i> 4.7 <span>(203)</span></div>
+                        <div class="product-footer">
+                            <span class="price">$4.90</span>
+                            <button class="add-cart"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ORDERS -->
+            <div id="screen-orders" class="screen">
+                <div class="orders-header">
+                    <h2>My Orders</h2>
+                    <div class="filter-icon"><i class="fas fa-sliders-h"></i></div>
+                </div>
+                <p class="orders-sub">Track and manage your deliveries</p>
+                <div class="tabs">
+                    <span class="active">All</span>
+                    <span>Processing</span>
+                    <span>Shipped</span>
+                    <span>Delivered</span>
+                    <span>Cancelled</span>
+                </div>
+                <div class="order-card">
+                    <img src="https://pngimg.com/d/avocado_PNG126.png" alt="Avocado">
+                    <div class="order-info">
+                        <h4>Fresh Avocado</h4>
+                        <div class="order-id">#AL-984321</div>
+                        <div class="order-date">Ordered on Oct 12, 2023</div>
+                    </div>
+                    <div class="order-status">
+                        <span class="status-badge delivered">Delivered</span>
+                        <span class="order-amount">$45.90</span>
+                        <button class="order-btn">Reorder</button>
+                    </div>
+                </div>
+                <div class="order-card">
+                    <img src="https://pngimg.com/d/milk_PNG127.png" alt="Dairy">
+                    <div class="order-info">
+                        <h4>Weekly Dairy Pack</h4>
+                        <div class="order-id">#AL-984405</div>
+                        <div class="order-date">Ordered on Oct 14, 2023</div>
+                    </div>
+                    <div class="order-status">
+                        <span class="status-badge processing">Processing</span>
+                        <span class="order-amount">$28.40</span>
+                        <button class="order-btn track">Track Order</button>
+                    </div>
+                </div>
+                <div class="order-card">
+                    <img src="https://pngimg.com/d/strawberry_PNG2596.png" alt="Strawberry">
+                    <div class="order-info">
+                        <h4>Fresh Strawberry</h4>
+                        <div class="order-id">#AL-984567</div>
+                        <div class="order-date">Ordered on Oct 15, 2023</div>
+                    </div>
+                    <div class="order-status">
+                        <span class="status-badge shipped">Shipped</span>
+                        <span class="order-amount">$12.30</span>
+                        <button class="order-btn track">Track Order</button>
+                    </div>
+                </div>
+                <div class="order-card">
+                    <img src="https://pngimg.com/d/tomato_PNG125.png" alt="Tomato">
+                    <div class="order-info">
+                        <h4>Ripe Tomatoes</h4>
+                        <div class="order-id">#AL-984789</div>
+                        <div class="order-date">Ordered on Oct 10, 2023</div>
+                    </div>
+                    <div class="order-status">
+                        <span class="status-badge delivered">Delivered</span>
+                        <span class="order-amount">$8.75</span>
+                        <button class="order-btn">Reorder</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHAT -->
+            <div id="screen-chat" class="screen">
+                <div class="chat-header">
+                    <h2>Messages</h2>
+                    <div class="new-chat"><i class="fas fa-pen"></i> New</div>
+                </div>
+                <div class="chat-item">
+                    <img class="chat-avatar online" src="https://i.pravatar.cc/150?u=farm" alt="Farm">
+                    <div class="chat-info">
+                        <h4>Farm Fresh Seller</h4>
+                        <p>Your organic avocados are ready</p>
+                    </div>
+                    <div class="chat-meta">
+                        <span class="time">10:42 AM</span>
+                        <span class="chat-badge">2</span>
+                    </div>
+                </div>
+                <div class="chat-item">
+                    <img class="chat-avatar online" src="https://i.pravatar.cc/150?u=courier" alt="Courier">
+                    <div class="chat-info">
+                        <h4>Courier John</h4>
+                        <p>I'm 5 minutes away with your delivery</p>
+                    </div>
+                    <div class="chat-meta">
+                        <span class="time">9:15 AM</span>
+                        <span class="chat-badge">1</span>
+                    </div>
+                </div>
+                <div class="chat-item">
+                    <div class="chat-avatar support">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="chat-info">
+                        <h4>Avora Support</h4>
+                        <p>How can we help you today?</p>
+                    </div>
+                    <div class="chat-meta">
+                        <span class="time">Yesterday</span>
+                    </div>
+                </div>
+                <div class="chat-item">
+                    <img class="chat-avatar" src="https://i.pravatar.cc/150?u=grocer" alt="Grocer">
+                    <div class="chat-info">
+                        <h4>Local Grocer</h4>
+                        <p>We have fresh basil in stock now</p>
+                    </div>
+                    <div class="chat-meta">
+                        <span class="time">Yesterday</span>
+                    </div>
+                </div>
+                <div class="chat-item">
+                    <img class="chat-avatar online" src="https://i.pravatar.cc/150?u=farmer" alt="Farmer">
+                    <div class="chat-info">
+                        <h4>Organic Farmer</h4>
+                        <p>New harvest of cherries available</p>
+                    </div>
+                    <div class="chat-meta">
+                        <span class="time">2 days ago</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROFILE -->
+            <div id="screen-profile" class="screen">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                        <div class="edit-badge"><i class="fas fa-pen"></i></div>
+                    </div>
+                    <h2>James Alexander</h2>
+                    <div class="email">james.alexander@email.com</div>
+                    <div class="member-since">Member since 2022</div>
+                </div>
+                <div class="profile-section-title">Account Settings</div>
+                <div class="profile-menu">
+                    <div class="profile-menu-item"><i class="fas fa-user-edit icon"></i><span>Edit Profile</span><i class="fas fa-chevron-right arrow"></i></div>
+                    <div class="profile-menu-item"><i class="fas fa-truck icon"></i><span>Delivery Address</span><i class="fas fa-chevron-right arrow"></i></div>
+                    <div class="profile-menu-item"><i class="fas fa-bookmark icon"></i><span>Saved Address</span><i class="fas fa-chevron-right arrow"></i></div>
+                    <div class="profile-menu-item"><i class="fas fa-money-bill-wave icon"></i><span>Payment Method</span><i class="fas fa-chevron-right arrow"></i></div>
+                </div>
+                <div class="profile-section-title">Preferences</div>
+                <div class="profile-menu">
+                    <div class="profile-menu-item"><i class="fas fa-bell icon"></i><span>Notifications</span><i class="fas fa-chevron-right arrow"></i></div>
+                    <div class="profile-menu-item"><i class="fas fa-globe icon"></i><span>Language</span><i class="fas fa-chevron-right arrow"></i></div>
+                    <div class="profile-menu-item"><i class="fas fa-shield-alt icon"></i><span>Privacy & Security</span><i class="fas fa-chevron-right arrow"></i></div>
+                    <div class="profile-menu-item"><i class="fas fa-question-circle icon"></i><span>Help & Support</span><i class="fas fa-chevron-right arrow"></i></div>
+                </div>
+                <div class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt icon"></i>
+                    <span>Log Out</span>
+                    <i class="fas fa-chevron-right arrow" style="color: #ccc;"></i>
+                </div>
+            </div>
+
+            <!-- BOTTOM NAV -->
+            <div class="bottom-nav" id="bottom-nav">
+                <div class="nav-item" onclick="changeScreen('screen-home', this, false)">
+                    <i class="fas fa-store"></i>
+                    <span>Shop</span>
+                </div>
+                <div class="nav-item" onclick="changeScreen('screen-orders', this, false)">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Orders</span>
+                    <span class="nav-badge">2</span>
+                </div>
+                <div class="nav-item" onclick="changeScreen('screen-chat', this, false)">
+                    <i class="fas fa-comment-dots"></i>
+                    <span>Chat</span>
+                    <span class="nav-badge">3</span>
+                </div>
+                <div class="nav-item" onclick="changeScreen('screen-profile', this, false)">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // INICIALIZAÇÃO
+        // ============================================
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('screen-login').classList.add('active');
+            document.getElementById('desktop-header').style.display = 'none';
+            document.getElementById('mobile-header').style.display = 'none';
+            document.getElementById('bottom-nav').style.display = 'none';
+            document.getElementById('global-search').classList.remove('show');
+        });
+
+        // ============================================
+        // SPLASH SCREEN
+        // ============================================
+        setTimeout(() => {
+            document.getElementById('splash-screen').classList.add('hide');
+            setTimeout(() => {
+                document.getElementById('splash-screen').style.display = 'none';
+                document.getElementById('app-wrapper').classList.add('show');
+            }, 800);
+        }, 3000);
+
+        // ============================================
+        // NAVEGAÇÃO ENTRE TELAS
+        // ============================================
+        function changeScreen(screenId, element, isDesktop) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById(screenId).classList.add('active');
+
+            const searchArea = document.getElementById('global-search');
+            if (screenId === 'screen-home') {
+                searchArea.classList.add('show');
+            } else {
+                searchArea.classList.remove('show');
+            }
+
+            if (!isDesktop && element) {
+                document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+                element.classList.add('active');
+            }
+
+            if (isDesktop) {
+                document.querySelectorAll('.desktop-nav .links a').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('onclick') && link.getAttribute('onclick').includes(screenId)) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ============================================
+        // LOGIN → HOME
+        // ============================================
+        function goToHome() {
+            document.getElementById('screen-login').classList.remove('active');
+            document.getElementById('screen-home').classList.add('active');
+            document.getElementById('global-search').classList.add('show');
+
+            if (window.innerWidth >= 1024) {
+                document.getElementById('desktop-header').style.display = 'flex';
+                document.getElementById('mobile-header').style.display = 'none';
+                document.getElementById('bottom-nav').style.display = 'none';
+            } else {
+                document.getElementById('desktop-header').style.display = 'none';
+                document.getElementById('mobile-header').style.display = 'flex';
+                document.getElementById('bottom-nav').style.display = 'flex';
+            }
+
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            document.querySelector('.nav-item').classList.add('active');
+
+            document.querySelectorAll('.desktop-nav .links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.textContent.trim() === 'Shop') {
+                    link.classList.add('active');
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ============================================
+        // LOGOUT
+        // ============================================
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                document.getElementById('global-search').classList.remove('show');
+                document.querySelectorAll('.screen').forEach(screen => {
+                    screen.classList.remove('active');
+                });
+                document.getElementById('screen-login').classList.add('active');
+                document.getElementById('desktop-header').style.display = 'none';
+                document.getElementById('mobile-header').style.display = 'none';
+                document.getElementById('bottom-nav').style.display = 'none';
+                document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+                document.querySelectorAll('.desktop-nav .links a').forEach(link => link.classList.remove('active'));
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // ============================================
+        // RESPONSIVIDADE
+        // ============================================
+        window.addEventListener('resize', function() {
+            // Se estiver na tela de login, força todos os navs a ficarem ocultos
+            if (document.getElementById('screen-login').classList.contains('active')) {
+                document.getElementById('desktop-header').style.display = 'none';
+                document.getElementById('mobile-header').style.display = 'none';
+                document.getElementById('bottom-nav').style.display = 'none';
+                return;
+            }
+            
+            const isDesktop = window.innerWidth >= 1024;
+            document.getElementById('desktop-header').style.display = isDesktop ? 'flex' : 'none';
+            document.getElementById('mobile-header').style.display = isDesktop ? 'none' : 'flex';
+            document.getElementById('bottom-nav').style.display = isDesktop ? 'none' : 'flex';
+        });
+    </script>
+</body>
+</html>
