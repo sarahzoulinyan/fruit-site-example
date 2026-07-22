@@ -2,21 +2,13 @@
 
 > Plataforma de e-commerce para groceries frescos com design premium e experiência mobile-first.
 
+🔗 **Demo:** https://pablog-7.github.io/fruit-site-exemplo/
+
 ---
 
 ## 🎯 Sobre o Projeto
 
 **Avora Mart** é uma aplicação web completa desenvolvida com HTML, CSS e JavaScript puro. O projeto foi criado para demonstrar um e-commerce moderno com navegação intuitiva, design responsivo e uma experiência de usuário fluida.
-
----
-
-## ✨ Demonstração
-
-<div align="center">
-
-![Screenshot](https://via.placeholder.com/800x400/8bc34a/ffffff?text=Avora+Mart+Preview)
-
-</div>
 
 ---
 
@@ -90,16 +82,6 @@
 
 ---
 
-## 🛠️ Melhorias Recentes
-
-- ✅ Remoção do pontinho vermelho no bottom nav
-- ✅ Correção de cores dos badges em telas menores
-- ✅ Design premium com glassmorphism
-- ✅ Filtros de pedidos funcionais
-- ✅ Modal de detalhes dos pedidos
-
----
-
 ## 🔜 Melhorias Futuras
 
 - [ ] Autenticação real (JWT)
@@ -111,27 +93,11 @@
 
 ---
 
-## 🤝 Contribuição
-
-1. Fork o projeto
-2. Crie sua branch (`git checkout -b feature/nova-feature`)
-3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`)
-4. Push para a branch (`git push origin feature/nova-feature`)
-5. Abra um Pull Request
-
----
-
-## 📄 Licença
-
-Este projeto está sob a licença **MIT**.
-
----
-
 <div align="center">
 
-**Desenvolvido com ❤️ por [Seu Nome]**
+**Desenvolvido com ❤️ por Pablo Gomes**
 
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/seu-usuario)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/pablog-7)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/seu-usuario)
 
 </div>
