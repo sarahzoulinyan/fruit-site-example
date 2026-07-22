@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Avora Mart · My Orders</title>
+    <title>Avora Mart · Product Detail</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -11,7 +11,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: 'Inter', sans-serif; 
-            background: linear-gradient(135deg, #f6f9f4 0%, #ffffff 50%, #eef8e7 100%);
+            background: #f6f9f4;
             color: #1a1a1a; 
             overflow-x: hidden; 
             width: 100%;
@@ -55,7 +55,7 @@
             background: transparent; 
             opacity: 0; 
             transition: opacity 0.5s; 
-            padding: 20px;
+            padding: 0;
         }
         #app-wrapper.show { opacity: 1; }
         .app-content { 
@@ -127,7 +127,7 @@
         #screen-login .login-header h1 span { color: #8bc34a; }
         #screen-login .login-header p { color: #666; font-size: 1rem; }
 
-        /* --- INPUTS MELHORADOS --- */
+        /* --- INPUTS --- */
         .input-group { margin-bottom: 20px; }
         .input-group label { 
             display: block; 
@@ -183,7 +183,7 @@
         }
         .login-options a:hover { color: #689f38; text-decoration: underline; }
 
-        /* --- BOTÃO MELHORADO --- */
+        /* --- BOTÃO LOGIN --- */
         .btn-login { 
             width: 100%; 
             padding: 18px; 
@@ -207,7 +207,7 @@
         }
         .btn-login:active { transform: translateY(0); }
 
-        /* --- SOCIAL DIVIDER --- */
+        /* --- SOCIAL --- */
         .social-divider { 
             text-align: center; 
             color: #999; 
@@ -230,7 +230,6 @@
             background: linear-gradient(to left, transparent, #e0e0e0); 
         }
 
-        /* --- SOCIAL BUTTONS --- */
         .social-btns { display: flex; gap: 12px; }
         .social-btn { 
             flex: 1; 
@@ -255,7 +254,6 @@
         .social-btn.google { color: #db4437; }
         .social-btn.apple { color: #000; }
 
-        /* --- LOGIN FOOTER --- */
         .login-footer { 
             text-align: center; 
             margin-top: 32px; 
@@ -269,9 +267,7 @@
         }
         .login-footer a:hover { color: #689f38; text-decoration: underline; }
 
-        /* ============================================
-           DESKTOP NAV (72px de altura)
-           ============================================ */
+        /* --- DESKTOP NAV --- */
         .desktop-nav { 
             display: none; 
             background: #ffffff; 
@@ -427,9 +423,7 @@
             font-weight: bold; 
         }
 
-        /* ============================================
-           SEARCH AREA (com margin-top de 28px)
-           ============================================ */
+        /* --- SEARCH AREA --- */
         .search-area { 
             padding: 0 20px 0; 
             background: #fff; 
@@ -474,18 +468,7 @@
             to { opacity: 1; transform: translateY(0); } 
         }
 
-        /* ============================================
-           TELAS COM HEADER (padding-top extra)
-           ============================================ */
-        #screen-orders.active,
-        #screen-chat.active,
-        #screen-profile.active {
-            padding-top: 32px; /* Espaçamento do header */
-        }
-
-        /* ============================================
-           BANNER (com margin-top de 28px)
-           ============================================ */
+        /* --- BANNER --- */
         .banner-promo {
             background: linear-gradient(135deg, #33691e 0%, #8bc34a 100%); 
             border-radius: 24px; 
@@ -644,6 +627,7 @@
             transition: 0.3s; 
             position: relative; 
             border: 1px solid #f0f0f0; 
+            cursor: pointer;
         }
         .product-card:hover { 
             transform: translateY(-6px); 
@@ -730,160 +714,34 @@
             transform: rotate(90deg) scale(1.1); 
         }
 
-        /* --- ORDERS (ESTILO EXATAMENTE IGUAL À FOTO) --- */
-        .orders-header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-bottom: 5px; 
-        }
-        .orders-header h2 { 
-            font-size: 1.8rem; 
-            font-weight: 700; 
-            color: #1a1a1a;
-        }
-        .orders-header .filter-icon { 
-            color: #8bc34a; 
-            font-size: 1.2rem; 
-            cursor: pointer; 
-            padding: 8px 12px; 
-            border-radius: 10px; 
-            background: #f5f5f5; 
-            transition: 0.3s; 
-        }
-        .orders-header .filter-icon:hover { 
-            background: #e8f5e9; 
-        }
-        .orders-sub { 
-            color: #666; 
-            margin-bottom: 20px; 
-            font-size: 0.9rem; 
-        }
-        .tabs { 
-            display: flex; 
-            gap: 5px; 
-            margin-bottom: 20px; 
-            border-bottom: 1px solid #eee; 
-            overflow-x: auto; 
-            padding-bottom: 0; 
-        }
-        .tabs span { 
-            padding: 10px 16px; 
-            font-weight: 600; 
-            color: #999; 
-            cursor: pointer; 
-            border-bottom: 3px solid transparent; 
-            white-space: nowrap; 
-            transition: 0.3s; 
-            font-size: 0.9rem; 
-        }
-        .tabs span:hover { 
-            color: #33691e; 
-        }
-        .tabs span.active { 
-            color: #33691e; 
-            border-bottom-color: #8bc34a; 
-        }
-        .order-card { 
-            background: white; 
-            border-radius: 16px; 
-            padding: 15px; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03); 
-            margin-bottom: 15px; 
-            display: flex; 
-            gap: 15px; 
-            border: 1px solid #f0f0f0; 
-            transition: 0.3s; 
-            align-items: center;
-        }
-        .order-card:hover { 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06); 
-        }
-        .order-card img { 
-            width: 60px; 
-            height: 60px; 
-            object-fit: contain; 
-            border-radius: 12px; 
-            background: #f8faf7;
-            padding: 6px;
-        }
-        .order-info { 
-            flex: 1; 
-            min-width: 0;
-        }
-        .order-info h4 { 
-            font-size: 1rem; 
-            margin-bottom: 2px; 
-            font-weight: 600; 
-            color: #1a1a1a;
-        }
-        .order-info .order-id { 
-            font-size: 0.75rem; 
-            color: #999; 
-            margin-bottom: 2px; 
-        }
-        .order-info .order-date { 
-            font-size: 0.75rem; 
-            color: #999; 
-        }
-        .order-status { 
-            text-align: right; 
-            min-width: 100px; 
-            flex-shrink: 0;
-        }
-        .status-badge { 
-            font-size: 0.7rem; 
-            padding: 4px 12px; 
-            border-radius: 20px; 
-            font-weight: 600; 
-            display: inline-block; 
-            margin-bottom: 8px; 
-        }
-        .status-badge.delivered { 
-            background: #e8f5e9; 
-            color: #2e7d32; 
-        }
-        .status-badge.processing { 
-            background: #fff3e0; 
-            color: #e65100; 
-        }
-        .status-badge.shipped { 
-            background: #e3f2fd; 
-            color: #0d47a1; 
-        }
-        .status-badge.cancelled { 
-            background: #fce4ec; 
-            color: #c62828; 
-        }
-        .order-amount { 
-            font-weight: 700; 
-            font-size: 1.1rem; 
-            display: block; 
-            margin-bottom: 5px; 
-            color: #1a1a1a;
-        }
-        .order-btn { 
-            border: 1px solid #ddd; 
-            padding: 4px 14px; 
-            border-radius: 20px; 
-            font-size: 0.75rem; 
-            font-weight: 600; 
-            color: #333; 
-            background: white; 
-            transition: 0.3s; 
-        }
-        .order-btn:hover { 
-            background: #f5f5f5; 
-            border-color: #bbb; 
-        }
-        .order-btn.track { 
-            background: #8bc34a; 
-            color: white; 
-            border: none; 
-        }
-        .order-btn.track:hover { 
-            background: #689f38; 
-        }
+        /* --- ORDERS --- */
+        .orders-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .orders-header h2 { font-size: 1.8rem; font-weight: 700; }
+        .orders-header .filter-icon { color: #8bc34a; font-size: 1.2rem; cursor: pointer; padding: 8px 12px; border-radius: 10px; background: #f5f5f5; transition: 0.3s; }
+        .orders-header .filter-icon:hover { background: #e8f5e9; }
+        .orders-sub { color: #666; margin-bottom: 20px; font-size: 0.9rem; }
+        .tabs { display: flex; gap: 5px; margin-bottom: 20px; border-bottom: 1px solid #eee; overflow-x: auto; padding-bottom: 0; }
+        .tabs span { padding: 10px 16px; font-weight: 600; color: #999; cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; transition: 0.3s; font-size: 0.9rem; }
+        .tabs span:hover { color: #33691e; }
+        .tabs span.active { color: #33691e; border-bottom-color: #8bc34a; }
+        .order-card { background: white; border-radius: 16px; padding: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); margin-bottom: 15px; display: flex; gap: 15px; border: 1px solid #f0f0f0; transition: 0.3s; }
+        .order-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+        .order-card img { width: 60px; height: 60px; object-fit: cover; border-radius: 12px; }
+        .order-info { flex: 1; }
+        .order-info h4 { font-size: 1rem; margin-bottom: 2px; font-weight: 600; }
+        .order-info .order-id { font-size: 0.75rem; color: #999; margin-bottom: 2px; }
+        .order-info .order-date { font-size: 0.75rem; color: #999; }
+        .order-status { text-align: right; min-width: 100px; }
+        .status-badge { font-size: 0.7rem; padding: 4px 12px; border-radius: 20px; font-weight: 600; display: inline-block; margin-bottom: 8px; }
+        .status-badge.delivered { background: #e8f5e9; color: #2e7d32; }
+        .status-badge.processing { background: #fff3e0; color: #e65100; }
+        .status-badge.shipped { background: #e3f2fd; color: #0d47a1; }
+        .status-badge.cancelled { background: #fce4ec; color: #c62828; }
+        .order-amount { font-weight: 700; font-size: 1.1rem; display: block; margin-bottom: 5px; }
+        .order-btn { border: 1px solid #ddd; padding: 4px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: #333; background: white; transition: 0.3s; }
+        .order-btn:hover { background: #f5f5f5; border-color: #bbb; }
+        .order-btn.track { background: #8bc34a; color: white; border: none; }
+        .order-btn.track:hover { background: #689f38; }
 
         /* --- CHAT --- */
         .chat-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
@@ -923,8 +781,187 @@
         .logout-btn span { font-weight: 600; font-size: 0.95rem; }
 
         /* ============================================
-           RESPONSIVE
+           PRODUCT DETAIL SCREEN
            ============================================ */
+        #screen-detail {
+            padding-top: 20px;
+        }
+        .detail-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #33691e;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .detail-back:hover {
+            color: #1b5e20;
+            transform: translateX(-4px);
+        }
+        .detail-back i {
+            font-size: 1.2rem;
+        }
+
+        .detail-image-wrapper {
+            background: #f8faf7;
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 24px;
+            position: relative;
+        }
+        .detail-image-wrapper img {
+            max-height: 280px;
+            width: auto;
+            margin: 0 auto;
+            display: block;
+        }
+        .detail-discount-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: #e53935;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+        .detail-favorite {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: #ddd;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .detail-favorite:hover {
+            color: #e53935;
+            transform: scale(1.1);
+        }
+
+        .detail-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .detail-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+        .detail-meta i {
+            margin-right: 6px;
+            color: #8bc34a;
+        }
+        .detail-meta span {
+            display: flex;
+            align-items: center;
+        }
+
+        .detail-price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 14px;
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .detail-current-price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #1a1a1a;
+        }
+        .detail-old-price {
+            font-size: 1.1rem;
+            color: #999;
+            text-decoration: line-through;
+        }
+        .detail-discount-percent {
+            background: #e8f5e9;
+            color: #2e7d32;
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 4px 14px;
+            border-radius: 20px;
+        }
+
+        .detail-description {
+            margin-bottom: 28px;
+        }
+        .detail-description h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+        .detail-description p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .detail-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-top: 1px solid #f0f0f0;
+            margin-bottom: 20px;
+        }
+        .detail-total label {
+            font-weight: 600;
+            color: #444;
+            font-size: 1rem;
+        }
+        .detail-total .total-price {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #1a1a1a;
+        }
+
+        .detail-add-btn {
+            width: 100%;
+            padding: 18px;
+            background: #8bc34a;
+            color: white;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 4px 16px rgba(139,195,74,0.3);
+        }
+        .detail-add-btn:hover {
+            background: #689f38;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(139,195,74,0.4);
+        }
+        .detail-add-btn:active {
+            transform: translateY(0);
+        }
+
+        /* --- RESPONSIVE --- */
         @media (max-width: 1023px) {
             body:has(#screen-login.active) .mobile-header,
             body:has(#screen-login.active) .bottom-nav {
@@ -941,8 +978,7 @@
                 max-width: 1400px; 
                 margin: 0 auto; 
                 background: #fff; 
-                box-shadow: 0 0 30px rgba(0,0,0,0.05); 
-                border-radius: 24px; 
+                box-shadow: none;
                 min-height: 90vh; 
             }
             #screen-login { min-height: 90vh; padding: 40px; }
@@ -950,7 +986,8 @@
             .screen { padding: 0 40px 40px 40px; }
             #screen-orders.active,
             #screen-chat.active,
-            #screen-profile.active {
+            #screen-profile.active,
+            #screen-detail.active {
                 padding-top: 40px;
             }
             .search-area { padding: 0 40px 0; }
@@ -961,6 +998,8 @@
             .product-card img { height: 160px; }
             .order-card { padding: 20px; }
             .order-card img { width: 80px; height: 80px; }
+            .detail-image-wrapper img { max-height: 360px; }
+            .detail-title { font-size: 2.2rem; }
         }
 
         @media (min-width: 769px) and (max-width: 1023px) {
@@ -970,7 +1009,8 @@
             .product-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
             #screen-orders.active,
             #screen-chat.active,
-            #screen-profile.active {
+            #screen-profile.active,
+            #screen-detail.active {
                 padding-top: 28px;
             }
         }
@@ -986,7 +1026,8 @@
             .screen { padding: 0 15px 80px 15px; }
             #screen-orders.active,
             #screen-chat.active,
-            #screen-profile.active {
+            #screen-profile.active,
+            #screen-detail.active {
                 padding-top: 24px;
             }
             .search-area { padding: 0 15px 0; margin-top: 20px; }
@@ -1001,22 +1042,13 @@
             .banner-promo h1 { font-size: 1.6rem; }
             .banner-img { width: 100px; height: 100px; }
             .categories-scroll { margin-bottom: 28px; gap: 14px; }
-            /* Ajustes específicos para orders em mobile */
-            .order-card { 
-                flex-wrap: wrap; 
-                gap: 12px;
-            }
-            .order-card img { 
-                width: 50px; 
-                height: 50px; 
-            }
-            .order-status { 
-                text-align: left; 
-                width: 100%; 
-                margin-top: 6px; 
-                padding-left: 62px;
-            }
-            .orders-header h2 { font-size: 1.5rem; }
+            .detail-image-wrapper { padding: 24px; }
+            .detail-image-wrapper img { max-height: 200px; }
+            .detail-title { font-size: 1.4rem; }
+            .detail-current-price { font-size: 1.6rem; }
+            .detail-total .total-price { font-size: 1.3rem; }
+            .order-card { flex-direction: column; align-items: flex-start; }
+            .order-status { text-align: left; width: 100%; margin-top: 10px; }
         }
 
         @media (max-width: 480px) {
@@ -1033,21 +1065,18 @@
             .categories-scroll { gap: 10px; }
             .cat-item { min-width: 60px; }
             .cat-circle { width: 52px; height: 52px; font-size: 1.4rem; }
-            .order-card { padding: 12px; }
-            .order-card img { width: 44px; height: 44px; }
-            .order-status { padding-left: 56px; }
-            .order-info h4 { font-size: 0.9rem; }
             .chat-info p { max-width: 120px; }
             .social-btns { flex-direction: column; }
             .banner-promo h1 { font-size: 1.3rem; }
             .banner-img { width: 80px; height: 80px; }
             #screen-orders.active,
             #screen-chat.active,
-            #screen-profile.active {
+            #screen-profile.active,
+            #screen-detail.active {
                 padding-top: 20px;
             }
-            .orders-header h2 { font-size: 1.3rem; }
-            .tabs span { padding: 8px 12px; font-size: 0.8rem; }
+            .detail-meta { flex-wrap: wrap; gap: 10px; font-size: 0.8rem; }
+            .detail-price-row { flex-wrap: wrap; }
         }
     </style>
 </head>
@@ -1102,8 +1131,8 @@
             <nav class="desktop-nav" id="desktop-header">
                 <div class="logo"><i class="fas fa-leaf"></i> Avora Mart</div>
                 <div class="links">
-                    <a href="#" onclick="changeScreen('screen-home', null, true)">Shop</a>
-                    <a href="#" class="active" onclick="changeScreen('screen-orders', null, true)">Orders</a>
+                    <a href="#" class="active" onclick="changeScreen('screen-home', null, true)">Shop</a>
+                    <a href="#" onclick="changeScreen('screen-orders', null, true)">Orders</a>
                     <a href="#" onclick="changeScreen('screen-chat', null, true)">Chat</a>
                     <a href="#" onclick="changeScreen('screen-profile', null, true)">Profile</a>
                 </div>
@@ -1177,7 +1206,7 @@
                     </div>
                 </div>
                 <div class="product-grid">
-                    <div class="product-card">
+                    <div class="product-card" onclick="openDetail('Navel Orange', '1 kg', '$4.50/kg', '$6.00', '30% OFF', 'https://pngimg.com/d/orange_PNG812.png', 'Experience the pinnacle of nutrition with our farm-fresh Navel Orange. Harvested at peak maturity, this nutrient-dense superfood is rich in vitamin C and antioxidants.')">
                         <span class="discount">-30%</span>
                         <i class="far fa-heart favorite"></i>
                         <img src="https://pngimg.com/d/orange_PNG812.png" alt="Navel Orange">
@@ -1189,7 +1218,7 @@
                             <button class="add-cart"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
-                    <div class="product-card">
+                    <div class="product-card" onclick="openDetail('Organic Broccoli', '500g', '$2.80/kg', '$3.50', '20% OFF', 'https://pngimg.com/d/broccoli_PNG197.png', 'Fresh organic broccoli packed with essential vitamins and minerals. Perfect for a healthy diet.')">
                         <span class="discount">-20%</span>
                         <i class="far fa-heart favorite"></i>
                         <img src="https://pngimg.com/d/broccoli_PNG197.png" alt="Broccoli">
@@ -1201,7 +1230,7 @@
                             <button class="add-cart"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
-                    <div class="product-card">
+                    <div class="product-card" onclick="openDetail('Red Strawberry', '250g', '$3.40/kg', '$4.00', '15% OFF', 'https://pngimg.com/d/strawberry_PNG2596.png', 'Sweet and juicy red strawberries, freshly picked. Rich in vitamin C and antioxidants.')">
                         <span class="discount">-15%</span>
                         <i class="far fa-heart favorite"></i>
                         <img src="https://pngimg.com/d/strawberry_PNG2596.png" alt="Strawberry">
@@ -1213,7 +1242,7 @@
                             <button class="add-cart"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
-                    <div class="product-card">
+                    <div class="product-card" onclick="openDetail('Fresh Avocado', '2 units', '$5.25/kg', '$7.00', '25% OFF', 'https://pngimg.com/d/avocado_PNG126.png', 'Creamy and nutritious avocados, perfect for salads, toast, or guacamole. Packed with healthy fats.')">
                         <span class="discount">-25%</span>
                         <i class="far fa-heart favorite"></i>
                         <img src="https://pngimg.com/d/avocado_PNG126.png" alt="Avocado">
@@ -1232,7 +1261,7 @@
                     <a href="#">See All</a>
                 </div>
                 <div class="product-grid">
-                    <div class="product-card">
+                    <div class="product-card" onclick="openDetail('Fresh Banana', '1kg', '$1.50', '', '', 'https://pngimg.com/d/banana_PNG839.png', 'Fresh bananas, rich in potassium and dietary fiber. Perfect for a healthy snack.')">
                         <i class="far fa-heart favorite"></i>
                         <img src="https://pngimg.com/d/banana_PNG839.png" alt="Banana">
                         <h4>Fresh Banana</h4>
@@ -1243,7 +1272,7 @@
                             <button class="add-cart"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
-                    <div class="product-card">
+                    <div class="product-card" onclick="openDetail('Green Apple', '1kg', '$3.20', '', '', 'https://pngimg.com/d/apple_PNG124.png', 'Crisp and juicy green apples. Great for eating fresh or making delicious pies and sauces.')">
                         <i class="far fa-heart favorite"></i>
                         <img src="https://pngimg.com/d/apple_PNG124.png" alt="Apple">
                         <h4>Green Apple</h4>
@@ -1254,7 +1283,7 @@
                             <button class="add-cart"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
-                    <div class="product-card">
+                    <div class="product-card" onclick="openDetail('Fresh Lemon', '500g', '$2.10', '', '', 'https://pngimg.com/d/lemon_PNG832.png', 'Fresh lemons packed with vitamin C. Perfect for refreshing drinks and culinary uses.')">
                         <i class="far fa-heart favorite"></i>
                         <img src="https://pngimg.com/d/lemon_PNG832.png" alt="Lemon">
                         <h4>Fresh Lemon</h4>
@@ -1265,7 +1294,7 @@
                             <button class="add-cart"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
-                    <div class="product-card">
+                    <div class="product-card" onclick="openDetail('Red Grapes', '500g', '$4.90', '', '', 'https://pngimg.com/d/grape_PNG14.png', 'Sweet and flavorful red grapes. Perfect for snacking, wine making, or adding to fruit salads.')">
                         <i class="far fa-heart favorite"></i>
                         <img src="https://pngimg.com/d/grape_PNG14.png" alt="Grape">
                         <h4>Red Grapes</h4>
@@ -1279,8 +1308,8 @@
                 </div>
             </div>
 
-            <!-- ORDERS (EXATAMENTE COMO NA FOTO) -->
-            <div id="screen-orders" class="screen active">
+            <!-- ORDERS -->
+            <div id="screen-orders" class="screen">
                 <div class="orders-header">
                     <h2>My Orders</h2>
                     <div class="filter-icon"><i class="fas fa-sliders-h"></i></div>
@@ -1292,7 +1321,6 @@
                     <span>Delivered</span>
                     <span>Cancel</span>
                 </div>
-                <!-- Pedido 1: Fresh Avocado -->
                 <div class="order-card">
                     <img src="https://pngimg.com/d/avocado_PNG126.png" alt="Avocado">
                     <div class="order-info">
@@ -1306,7 +1334,6 @@
                         <button class="order-btn">Reorder</button>
                     </div>
                 </div>
-                <!-- Pedido 2: Weekly Dairy -->
                 <div class="order-card">
                     <img src="https://pngimg.com/d/milk_PNG127.png" alt="Dairy">
                     <div class="order-info">
@@ -1320,7 +1347,6 @@
                         <button class="order-btn track">Track Order</button>
                     </div>
                 </div>
-                <!-- Pedido 3: Smoothie Kit... -->
                 <div class="order-card">
                     <img src="https://pngimg.com/d/strawberry_PNG2596.png" alt="Smoothie">
                     <div class="order-info">
@@ -1334,7 +1360,6 @@
                         <button class="order-btn">Reorder</button>
                     </div>
                 </div>
-                <!-- Pedido extra para demonstrar Cancel -->
                 <div class="order-card">
                     <img src="https://pngimg.com/d/lemon_PNG832.png" alt="Lemon">
                     <div class="order-info">
@@ -1348,6 +1373,46 @@
                         <button class="order-btn">Reorder</button>
                     </div>
                 </div>
+            </div>
+
+            <!-- DETAIL -->
+            <div id="screen-detail" class="screen">
+                <div class="detail-back" onclick="closeDetail()">
+                    <i class="fas fa-arrow-left"></i> Back to Shop
+                </div>
+
+                <div class="detail-image-wrapper">
+                    <span class="detail-discount-badge" id="detailDiscountBadge">30% OFF</span>
+                    <div class="detail-favorite"><i class="far fa-heart"></i></div>
+                    <img id="detailImage" src="https://pngimg.com/d/orange_PNG812.png" alt="Product">
+                </div>
+
+                <h1 class="detail-title" id="detailTitle">Navel Orange</h1>
+
+                <div class="detail-meta">
+                    <span><i class="fas fa-clock"></i> 20-30 min</span>
+                    <span><i class="fas fa-weight-hanging"></i> <span id="detailWeight">1 kg</span></span>
+                </div>
+
+                <div class="detail-price-row">
+                    <span class="detail-current-price" id="detailCurrentPrice">$4.50</span>
+                    <span class="detail-old-price" id="detailOldPrice">$6.00</span>
+                    <span class="detail-discount-percent" id="detailDiscountPercent">30% OFF</span>
+                </div>
+
+                <div class="detail-description">
+                    <h4>Description</h4>
+                    <p id="detailDescription">Experience the pinnacle of nutrition with our farm-fresh Navel Orange. Harvested at peak maturity, this nutrient-dense superfood is rich in vitamin C and antioxidants.</p>
+                </div>
+
+                <div class="detail-total">
+                    <label>Total Price</label>
+                    <span class="total-price" id="detailTotalPrice">$4.50</span>
+                </div>
+
+                <button class="detail-add-btn" onclick="addToCart()">
+                    <i class="fas fa-shopping-cart"></i> Add To Cart
+                </button>
             </div>
 
             <!-- CHAT -->
@@ -1450,7 +1515,7 @@
                     <i class="fas fa-store"></i>
                     <span>Shop</span>
                 </div>
-                <div class="nav-item active" onclick="changeScreen('screen-orders', this, false)">
+                <div class="nav-item" onclick="changeScreen('screen-orders', this, false)">
                     <i class="fas fa-clipboard-list"></i>
                     <span>Orders</span>
                     <span class="nav-badge">2</span>
@@ -1473,9 +1538,7 @@
         // INICIALIZAÇÃO
         // ============================================
         document.addEventListener('DOMContentLoaded', function() {
-            // Inicia com a tela de login
             document.getElementById('screen-login').classList.add('active');
-            document.getElementById('screen-orders').classList.remove('active');
             document.getElementById('desktop-header').style.display = 'none';
             document.getElementById('mobile-header').style.display = 'none';
             document.getElementById('bottom-nav').style.display = 'none';
@@ -1494,7 +1557,7 @@
         }, 3000);
 
         // ============================================
-        // NAVEGAÇÃO ENTRE TELAS
+        // NAVEGAÇÃO
         // ============================================
         function changeScreen(screenId, element, isDesktop) {
             document.querySelectorAll('.screen').forEach(screen => {
@@ -1527,7 +1590,80 @@
         }
 
         // ============================================
-        // LOGIN → HOME
+        // PRODUCT DETAIL
+        // ============================================
+        let currentProduct = {};
+
+        function openDetail(name, weight, price, oldPrice, discount, image, description) {
+            // Salvar produto atual
+            currentProduct = { name, weight, price, oldPrice, discount, image, description };
+
+            // Preencher dados
+            document.getElementById('detailTitle').textContent = name;
+            document.getElementById('detailWeight').textContent = weight;
+            document.getElementById('detailCurrentPrice').textContent = price;
+            document.getElementById('detailOldPrice').textContent = oldPrice || '';
+            document.getElementById('detailDiscountPercent').textContent = discount || '';
+            document.getElementById('detailDiscountBadge').textContent = discount || '';
+            document.getElementById('detailImage').src = image;
+            document.getElementById('detailDescription').textContent = description;
+            
+            // Mostrar/esconder old price
+            const oldPriceEl = document.getElementById('detailOldPrice');
+            const discountPercentEl = document.getElementById('detailDiscountPercent');
+            const discountBadgeEl = document.getElementById('detailDiscountBadge');
+            if (oldPrice) {
+                oldPriceEl.style.display = 'inline';
+                discountPercentEl.style.display = 'inline';
+                discountBadgeEl.style.display = 'inline';
+            } else {
+                oldPriceEl.style.display = 'none';
+                discountPercentEl.style.display = 'none';
+                discountBadgeEl.style.display = 'none';
+            }
+
+            // Total price = current price
+            document.getElementById('detailTotalPrice').textContent = price;
+
+            // Esconder search
+            document.getElementById('global-search').classList.remove('show');
+
+            // Mudar para tela de detalhe
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('screen-detail').classList.add('active');
+
+            // Atualizar navs
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            document.querySelectorAll('.desktop-nav .links a').forEach(link => link.classList.remove('active'));
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function closeDetail() {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('screen-home').classList.add('active');
+            document.getElementById('global-search').classList.add('show');
+
+            // Ativar navs
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            document.querySelector('.nav-item').classList.add('active');
+            
+            document.querySelectorAll('.desktop-nav .links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.textContent.trim() === 'Shop') {
+                    link.classList.add('active');
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function addToCart() {
+            alert(`🛒 ${currentProduct.name} added to cart!`);
+        }
+
+        // ============================================
+        // LOGIN
         // ============================================
         function goToHome() {
             document.getElementById('screen-login').classList.remove('active');
@@ -1594,7 +1730,7 @@
         });
 
         // ============================================
-        // INTERAÇÕES DAS TABS E BOTÕES
+        // INTERAÇÕES
         // ============================================
         document.querySelectorAll('.tabs span').forEach(tab => {
             tab.addEventListener('click', function() {
@@ -1616,6 +1752,29 @@
 
         document.querySelector('.filter-icon')?.addEventListener('click', function() {
             alert('🔍 Abrir filtros de pedidos');
+        });
+
+        // Corações nos detalhes e produtos
+        document.querySelectorAll('.detail-favorite, .favorite').forEach(el => {
+            el.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const icon = this.querySelector('i') || this;
+                icon.classList.toggle('far');
+                icon.classList.toggle('fas');
+                if (icon.classList.contains('fas')) {
+                    icon.style.color = '#e53935';
+                } else {
+                    icon.style.color = '#ddd';
+                }
+            });
+        });
+
+        // Evitar que clique no botão de adicionar abra o detalhe
+        document.querySelectorAll('.add-cart').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                alert('🛒 Produto adicionado ao carrinho!');
+            });
         });
     </script>
 </body>
