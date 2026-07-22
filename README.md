@@ -1,14 +1,17 @@
 # 🌿 Avora Mart
 
-> Plataforma de e-commerce para groceries frescos com design premium e experiência mobile-first.
+> UI Concept de um e-commerce moderno desenvolvido para demonstrar design premium, responsividade e experiência de usuário.
 
-🔗 **Demo:** https://pablog-7.github.io/fruit-site-exemplo/
+🌐 **Website:** https://www.pablogdev.com.br  
+🚀 **Demo:** https://pablog-7.github.io/fruit-site-exemplo/
 
 ---
 
 ## 🎯 Sobre o Projeto
 
-**Avora Mart** é uma aplicação web completa desenvolvida com HTML, CSS e JavaScript puro. O projeto foi criado para demonstrar um e-commerce moderno com navegação intuitiva, design responsivo e uma experiência de usuário fluida.
+O **Avora Mart** é um UI Concept criado para compor meu portfólio de desenvolvimento front-end. O projeto demonstra a criação de uma interface moderna para um e-commerce de produtos frescos, priorizando design premium, responsividade e uma experiência de navegação intuitiva.
+
+Embora desenvolvido com HTML, CSS e JavaScript, este conceito pode servir como base para aplicações reais utilizando React, TypeScript, Next.js, APIs, autenticação e integrações com sistemas de pagamento.
 
 ---
 
@@ -82,21 +85,31 @@
 
 ---
 
-## 🔜 Melhorias Futuras
+## 🚀 Possíveis Evoluções
 
-- [ ] Autenticação real (JWT)
-- [ ] API RESTful
-- [ ] Banco de dados
-- [ ] Sistema de pagamentos
-- [ ] Modo escuro
+- [ ] Autenticação com JWT
+- [ ] API de produtos
+- [ ] Integração com banco de dados
+- [ ] Carrinho persistente
+- [ ] Checkout e pagamentos
+- [ ] Painel administrativo
 - [ ] PWA
+
+---
+
+## 💼 Sobre este Case
+
+Este projeto faz parte da coleção de **UI Concepts** desenvolvidos para meu portfólio. O objetivo é apresentar diferentes estilos de interface e demonstrar minha abordagem em design, experiência do usuário e desenvolvimento front-end.
+
+Caso deseje transformar este conceito em um projeto real, é possível evoluí-lo com React, TypeScript, Next.js, backend, autenticação e integrações personalizadas.
 
 ---
 
 <div align="center">
 
-**Desenvolvido por Pablo Gomes**
+### Desenvolvido por Pablo Gomes
 
+[![Website](https://img.shields.io/badge/Website-PabloG.Dev-8bc34a?style=flat-square)](https://www.pablogdev.com.br)
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/pablog-7)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/pablogomesdev)
 
