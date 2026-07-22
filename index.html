@@ -687,7 +687,6 @@
             transform: translateY(-2px);
         }
 
-        /* Efeito de brilho sutil */
         .banner-promo::before {
             content: '';
             position: absolute;
@@ -700,7 +699,6 @@
             pointer-events: none;
         }
 
-        /* Segundo efeito decorativo */
         .banner-promo::after {
             content: '';
             position: absolute;
@@ -1293,14 +1291,12 @@
             .detail-current-price { font-size: 2rem; }
             .detail-image-wrapper { padding: 40px; }
 
-            /* Esconde navs no detail em telas grandes */
             body.detail-active .desktop-nav,
             body.detail-active .mobile-header,
             body.detail-active .bottom-nav {
                 display: none !important;
             }
             
-            /* Esconde navs no login em telas grandes */
             body.login-active .desktop-nav,
             body.login-active .mobile-header,
             body.login-active .bottom-nav {
@@ -1420,7 +1416,6 @@
             .detail-image-wrapper img { max-height: 150px; }
             .detail-title { font-size: 1.2rem; }
 
-            /* Ajustes da splash em mobile */
             .splash-logo .brand-name { font-size: 2rem; }
             .splash-logo .icon-glass { width: 60px; height: 60px; font-size: 1.8rem; }
             .splash-frame { top: 12px; left: 12px; right: 12px; bottom: 12px; }
@@ -1431,7 +1426,6 @@
             .loader-dot-modern { width: 7px; height: 7px; }
         }
 
-        /* Correção para Safari */
         @supports (-webkit-touch-callout: none) {
             #splash-screen {
                 height: -webkit-fill-available;
@@ -1586,7 +1580,7 @@
                             Shop Now <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
-                    <img class="banner-img" src="https://pngimg.com/d/orange_PNG812.png" alt="Oranges">
+                    <img class="banner-img" src="img/laranja.webp" alt="Oranges">
                 </div>
 
                 <div class="section-header">
@@ -1616,10 +1610,10 @@
                     </div>
                 </div>
                 <div class="product-grid">
-                    <div class="product-card" onclick="openDetail('Navel Orange', '1 kg', '$4.50/kg', '$6.00', '30% OFF', 'https://pngimg.com/d/orange_PNG812.png', 'Experience the pinnacle of nutrition with our farm-fresh Navel Orange. Harvested at peak maturity, this nutrient-dense superfood is rich in vitamin C and antioxidants.')">
+                    <div class="product-card" onclick="openDetail('Navel Orange', '1 kg', '$4.50', '$6.00', '30% OFF', 'img/laranja.webp', 'Experience the pinnacle of nutrition with our farm-fresh Navel Orange. Harvested at peak maturity, this nutrient-dense superfood is rich in vitamin C and antioxidants.')">
                         <span class="discount">-30%</span>
                         <i class="far fa-heart favorite"></i>
-                        <img src="https://pngimg.com/d/orange_PNG812.png" alt="Navel Orange">
+                        <img src="img/laranja.webp" alt="Navel Orange">
                         <h4>Navel Orange</h4>
                         <div class="weight">1kg</div>
                         <div class="rating"><i class="fas fa-star"></i> 4.8 <span>(156)</span></div>
@@ -1628,10 +1622,10 @@
                             <button class="add-cart"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
-                    <div class="product-card" onclick="openDetail('Organic Broccoli', '500g', '$2.80/kg', '$3.50', '20% OFF', 'https://pngimg.com/uploads/broccoli/broccoli_PNG72950.png', 'Fresh organic broccoli packed with essential vitamins and minerals. Perfect for a healthy diet.')">
+                    <div class="product-card" onclick="openDetail('Organic Broccoli', '500g', '$2.80', '$3.50', '20% OFF', 'img/brocolis.webp', 'Fresh organic broccoli packed with essential vitamins and minerals. Perfect for a healthy diet.')">
                         <span class="discount">-20%</span>
                         <i class="far fa-heart favorite"></i>
-                        <img src="https://pngimg.com/uploads/broccoli/broccoli_PNG72950.png" alt="Broccoli">
+                        <img src="img/brocolis.webp" alt="Broccoli">
                         <h4>Organic Broccoli</h4>
                         <div class="weight">500g</div>
                         <div class="rating"><i class="fas fa-star"></i> 4.9 <span>(89)</span></div>
@@ -1640,10 +1634,10 @@
                             <button class="add-cart"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
-                    <div class="product-card" onclick="openDetail('Red Strawberry', '250g', '$3.40/kg', '$4.00', '15% OFF', 'https://pngimg.com/d/strawberry_PNG2596.png', 'Sweet and juicy red strawberries, freshly picked. Rich in vitamin C and antioxidants.')">
+                    <div class="product-card" onclick="openDetail('Red Strawberry', '250g', '$3.40', '$4.00', '15% OFF', 'img/morango.webp', 'Sweet and juicy red strawberries, freshly picked. Rich in vitamin C and antioxidants.')">
                         <span class="discount">-15%</span>
                         <i class="far fa-heart favorite"></i>
-                        <img src="https://pngimg.com/d/strawberry_PNG2596.png" alt="Strawberry">
+                        <img src="img/morango.webp" alt="Strawberry">
                         <h4>Red Strawberry</h4>
                         <div class="weight">250g</div>
                         <div class="rating"><i class="fas fa-star"></i> 4.8 <span>(234)</span></div>
@@ -1652,10 +1646,10 @@
                             <button class="add-cart"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
-                    <div class="product-card" onclick="openDetail('Fresh Avocado', '2 units', '$5.25/kg', '$7.00', '25% OFF', 'https://pngimg.com/uploads/avocado/avocado_PNG15516.png', 'Creamy and nutritious avocados, perfect for salads, toast, or guacamole. Packed with healthy fats.')">
+                    <div class="product-card" onclick="openDetail('Fresh Avocado', '2 units', '$5.25', '$7.00', '25% OFF', 'img/avocado.webp', 'Creamy and nutritious avocados, perfect for salads, toast, or guacamole. Packed with healthy fats.')">
                         <span class="discount">-25%</span>
                         <i class="far fa-heart favorite"></i>
-                        <img src="https://pngimg.com/uploads/avocado/avocado_PNG15516.png" alt="Avocado">
+                        <img src="img/avocado.webp" alt="Avocado">
                         <h4>Fresh Avocado</h4>
                         <div class="weight">2 units</div>
                         <div class="rating"><i class="fas fa-star"></i> 4.7 <span>(67)</span></div>
@@ -1671,9 +1665,9 @@
                     <a href="#">See All</a>
                 </div>
                 <div class="product-grid">
-                    <div class="product-card" onclick="openDetail('Fresh Banana', '1kg', '$1.50', '', '', 'https://pngimg.com/d/banana_PNG839.png', 'Fresh bananas, rich in potassium and dietary fiber. Perfect for a healthy snack.')">
+                    <div class="product-card" onclick="openDetail('Fresh Banana', '1kg', '$1.50', '', '', 'img/banana.webp', 'Fresh bananas, rich in potassium and dietary fiber. Perfect for a healthy snack.')">
                         <i class="far fa-heart favorite"></i>
-                        <img src="https://pngimg.com/d/banana_PNG839.png" alt="Banana">
+                        <img src="img/banana.webp" alt="Banana">
                         <h4>Fresh Banana</h4>
                         <div class="weight">1kg</div>
                         <div class="rating"><i class="fas fa-star"></i> 4.5 <span>(342)</span></div>
@@ -1682,9 +1676,9 @@
                             <button class="add-cart"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
-                    <div class="product-card" onclick="openDetail('Green Apple', '1kg', '$3.20', '', '', 'https://pngimg.com/uploads/apple/apple_PNG12483.png', 'Crisp and juicy green apples. Great for eating fresh or making delicious pies and sauces.')">
+                    <div class="product-card" onclick="openDetail('Green Apple', '1kg', '$3.20', '', '', 'img/apple.webp', 'Crisp and juicy green apples. Great for eating fresh or making delicious pies and sauces.')">
                         <i class="far fa-heart favorite"></i>
-                        <img src="https://pngimg.com/uploads/apple/apple_PNG12483.png" alt="Apple">
+                        <img src="img/apple.webp" alt="Apple">
                         <h4>Green Apple</h4>
                         <div class="weight">1kg</div>
                         <div class="rating"><i class="fas fa-star"></i> 4.6 <span>(178)</span></div>
@@ -1693,9 +1687,9 @@
                             <button class="add-cart"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
-                    <div class="product-card" onclick="openDetail('Fresh Lemon', '500g', '$2.10', '', '', 'https://pngimg.com/uploads/lemon/lemon_PNG25177.png', 'Fresh lemons packed with vitamin C. Perfect for refreshing drinks and culinary uses.')">
+                    <div class="product-card" onclick="openDetail('Fresh Lemon', '500g', '$2.10', '', '', 'img/lemon.webp', 'Fresh lemons packed with vitamin C. Perfect for refreshing drinks and culinary uses.')">
                         <i class="far fa-heart favorite"></i>
-                        <img src="https://pngimg.com/uploads/lemon/lemon_PNG25177.png" alt="Lemon">
+                        <img src="img/lemon.webp" alt="Lemon">
                         <h4>Fresh Lemon</h4>
                         <div class="weight">500g</div>
                         <div class="rating"><i class="fas fa-star"></i> 4.3 <span>(92)</span></div>
@@ -1704,9 +1698,9 @@
                             <button class="add-cart"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
-                    <div class="product-card" onclick="openDetail('Red Grapes', '500g', '$4.90', '', '', 'https://pngimg.com/uploads/grape/grape_PNG2979.png', 'Sweet and flavorful red grapes. Perfect for snacking, wine making, or adding to fruit salads.')">
+                    <div class="product-card" onclick="openDetail('Red Grapes', '500g', '$4.90', '', '', 'img/grapes.webp', 'Sweet and flavorful red grapes. Perfect for snacking, wine making, or adding to fruit salads.')">
                         <i class="far fa-heart favorite"></i>
-                        <img src="https://pngimg.com/uploads/grape/grape_PNG2979.png" alt="Grape">
+                        <img src="img/grapes.webp" alt="Grape">
                         <h4>Red Grapes</h4>
                         <div class="weight">500g</div>
                         <div class="rating"><i class="fas fa-star"></i> 4.7 <span>(203)</span></div>
@@ -1732,7 +1726,7 @@
                     <span>Cancel</span>
                 </div>
                 <div class="order-card">
-                    <img src="https://pngimg.com/uploads/avocado/avocado_PNG15516.png" alt="Avocado">
+                    <img src="img/avocado.webp" alt="Avocado">
                     <div class="order-info">
                         <h4>Fresh Avocado</h4>
                         <div class="order-id">#AL-984321</div>
@@ -1745,7 +1739,7 @@
                     </div>
                 </div>
                 <div class="order-card">
-                    <img src="https://pngimg.com/uploads/milk/milk_PNG12700.png" alt="Dairy">
+                    <img src="img/leite.webp" alt="Dairy">
                     <div class="order-info">
                         <h4>Weekly Dairy</h4>
                         <div class="order-id">#AL-984405</div>
@@ -1758,7 +1752,7 @@
                     </div>
                 </div>
                 <div class="order-card">
-                    <img src="https://pngimg.com/d/strawberry_PNG2596.png" alt="Smoothie">
+                    <img src="img/morango.webp" alt="Smoothie">
                     <div class="order-info">
                         <h4>Smoothie Kit...</h4>
                         <div class="order-id">#AL-984210</div>
@@ -1771,7 +1765,7 @@
                     </div>
                 </div>
                 <div class="order-card">
-                    <img src="https://pngimg.com/uploads/lemon/lemon_PNG25177.png" alt="Lemon">
+                    <img src="img/lemon.webp" alt="Lemon">
                     <div class="order-info">
                         <h4>Organic Lemon</h4>
                         <div class="order-id">#AL-984512</div>
@@ -1794,7 +1788,7 @@
                 <div class="detail-image-wrapper">
                     <span class="detail-discount-badge" id="detailDiscountBadge">30% OFF</span>
                     <div class="detail-favorite"><i class="far fa-heart"></i></div>
-                    <img id="detailImage" src="https://pngimg.com/d/orange_PNG812.png" alt="Product">
+                    <img id="detailImage" src="img/laranja.webp" alt="Product">
                 </div>
 
                 <h1 class="detail-title" id="detailTitle">Navel Orange</h1>
@@ -1954,7 +1948,6 @@
             document.getElementById('bottom-nav').style.display = 'none';
             document.getElementById('global-search').classList.remove('show');
             
-            // Adiciona classe para esconder navs no login
             document.body.classList.add('login-active');
         });
 
@@ -1985,7 +1978,6 @@
                 searchArea.classList.remove('show');
             }
 
-            // Remove classe detail-active e login-active do body
             document.body.classList.remove('detail-active', 'login-active');
 
             if (!isDesktop && element) {
@@ -2002,7 +1994,6 @@
                 });
             }
 
-            // Mostrar/esconder navs
             if (screenId === 'screen-login') {
                 document.body.classList.add('login-active');
                 document.getElementById('desktop-header').style.display = 'none';
@@ -2062,7 +2053,6 @@
             document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
             document.querySelectorAll('.desktop-nav .links a').forEach(link => link.classList.remove('active'));
 
-            // Esconde navs no detail
             document.body.classList.add('detail-active');
             document.getElementById('desktop-header').style.display = 'none';
             document.getElementById('mobile-header').style.display = 'none';
@@ -2086,10 +2076,8 @@
                 }
             });
 
-            // Remove classe detail-active
             document.body.classList.remove('detail-active');
 
-            // Restaura navs
             const isDesktopView = window.innerWidth >= 1024;
             document.getElementById('desktop-header').style.display = isDesktopView ? 'flex' : 'none';
             document.getElementById('mobile-header').style.display = isDesktopView ? 'none' : 'flex';
@@ -2216,7 +2204,6 @@
             });
         });
 
-        // Ignorar erro "Unchecked runtime.lastError"
         window.addEventListener('error', function(e) {
             if (e.message && e.message.includes('runtime.lastError')) {
                 e.preventDefault();
