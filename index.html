@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Avora Mart · Product Detail</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* --- RESET & GLOBAL --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,23 +28,247 @@
         ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #7cb342, #1b5e20); }
         * { scrollbar-width: thin; scrollbar-color: #8bc34a #f0f2f5; }
 
-        /* --- SPLASH SCREEN --- */
+        /* ============================================
+           SPLASH SCREEN - MINIMAL PREMIUM
+           ============================================ */
         #splash-screen {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: linear-gradient(145deg, #c5e1a5, #8bc34a);
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            z-index: 99999; transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        #splash-screen.hide { opacity: 0; transform: scale(1.5) rotate(10deg); pointer-events: none; }
-        .splash-logo { font-size: 5rem; font-weight: 900; color: #1b5e20; letter-spacing: -3px; display: flex; align-items: center; gap: 10px; margin-bottom: 20px; animation: pulseLogo 1.5s infinite alternate; }
-        .splash-logo i { font-size: 4rem; }
-        @keyframes pulseLogo {
-            0% { transform: scale(1); opacity: 0.8; text-shadow: 0 0 0 rgba(0,0,0,0); }
-            100% { transform: scale(1.05); opacity: 1; text-shadow: 0 0 30px rgba(255,255,255,0.3); }
+
+        #splash-screen.hide {
+            opacity: 0;
+            transform: scale(0.95) translateY(-12px);
+            pointer-events: none;
         }
-        .splash-sub { color: #33691e; font-size: 1.2rem; letter-spacing: 3px; font-weight: 600; }
-        .loader-splash { margin-top: 40px; width: 60px; height: 60px; border: 6px solid rgba(255,255,255,0.2); border-radius: 50%; border-top-color: #fff; animation: spin 1s linear infinite; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* --- Moldura decorativa --- */
+        .splash-frame {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            right: 16px;
+            bottom: 16px;
+            border: 1px solid rgba(139, 195, 74, 0.08);
+            border-radius: 20px;
+            pointer-events: none;
+        }
+
+        /* --- Cantos com detalhe --- */
+        .splash-corner-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #8bc34a;
+            border-radius: 50%;
+            opacity: 0.2;
+        }
+
+        .splash-corner-dot.tl { top: 28px; left: 28px; }
+        .splash-corner-dot.tr { top: 28px; right: 28px; }
+        .splash-corner-dot.bl { bottom: 28px; left: 28px; }
+        .splash-corner-dot.br { bottom: 28px; right: 28px; }
+
+        /* --- Conteúdo --- */
+        .splash-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* --- Logo com efeito de vidro --- */
+        .splash-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .splash-logo .icon-glass {
+            width: 72px;
+            height: 72px;
+            background: rgba(139, 195, 74, 0.06);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: #33691e;
+            border: 1px solid rgba(139, 195, 74, 0.08);
+            backdrop-filter: blur(10px);
+            transition: 0.3s;
+            animation: glassPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glassPulse {
+            0%, 100% {
+                transform: scale(1);
+                background: rgba(139, 195, 74, 0.06);
+            }
+            50% {
+                transform: scale(1.04);
+                background: rgba(139, 195, 74, 0.10);
+            }
+        }
+
+        .splash-logo .brand-name {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            letter-spacing: -1.5px;
+            line-height: 1;
+            margin-top: 10px;
+        }
+
+        .splash-logo .brand-name .highlight {
+            color: #8bc34a;
+        }
+
+        .splash-logo .brand-sub {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: #bbb;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        /* --- Divisor com diamante --- */
+        .splash-divider-premium {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 18px 0 16px;
+        }
+
+        .splash-divider-premium .line {
+            width: 30px;
+            height: 1px;
+            background: #e8e8e8;
+        }
+
+        .splash-divider-premium .diamond {
+            width: 6px;
+            height: 6px;
+            background: #8bc34a;
+            transform: rotate(45deg);
+            opacity: 0.4;
+            animation: diamondPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes diamondPulse {
+            0%, 100% {
+                opacity: 0.3;
+                transform: rotate(45deg) scale(0.8);
+            }
+            50% {
+                opacity: 0.8;
+                transform: rotate(45deg) scale(1.2);
+            }
+        }
+
+        /* --- Tagline minimal --- */
+        .splash-tagline {
+            color: #999;
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            opacity: 0;
+            animation: fadeSlideUp 0.8s ease 0.3s forwards;
+        }
+
+        .splash-tagline i {
+            color: #8bc34a;
+            font-size: 0.4rem;
+            margin: 0 6px;
+            vertical-align: middle;
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Loader com pontos modernos --- */
+        .splash-loader {
+            margin-top: 44px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            opacity: 0;
+            animation: fadeSlideUp 0.8s ease 0.6s forwards;
+        }
+
+        .loader-dots-modern {
+            display: flex;
+            gap: 10px;
+        }
+
+        .loader-dot-modern {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #dcedc8;
+            animation: dotModernBounce 1.2s ease-in-out infinite;
+        }
+
+        .loader-dot-modern:nth-child(1) {
+            animation-delay: 0s;
+            background: #c5e1a5;
+        }
+        .loader-dot-modern:nth-child(2) {
+            animation-delay: 0.2s;
+            background: #8bc34a;
+        }
+        .loader-dot-modern:nth-child(3) {
+            animation-delay: 0.4s;
+            background: #689f38;
+        }
+        .loader-dot-modern:nth-child(4) {
+            animation-delay: 0.6s;
+            background: #8bc34a;
+        }
+        .loader-dot-modern:nth-child(5) {
+            animation-delay: 0.8s;
+            background: #c5e1a5;
+        }
+
+        @keyframes dotModernBounce {
+            0%, 100% {
+                transform: translateY(0) scale(0.8);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-12px) scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        .loader-label {
+            font-size: 0.55rem;
+            font-weight: 500;
+            color: #ddd;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
 
         /* --- APP WRAPPER --- */
         #app-wrapper { 
@@ -1077,15 +1301,69 @@
             }
             .detail-meta { flex-wrap: wrap; gap: 10px; font-size: 0.8rem; }
             .detail-price-row { flex-wrap: wrap; }
+
+            /* Ajustes da splash em mobile */
+            .splash-logo .brand-name { font-size: 2rem; }
+            .splash-logo .icon-glass { width: 60px; height: 60px; font-size: 1.8rem; }
+            .splash-frame { top: 12px; left: 12px; right: 12px; bottom: 12px; }
+            .splash-corner-dot.tl { top: 22px; left: 22px; }
+            .splash-corner-dot.tr { top: 22px; right: 22px; }
+            .splash-corner-dot.bl { bottom: 22px; left: 22px; }
+            .splash-corner-dot.br { bottom: 22px; right: 22px; }
+            .loader-dot-modern { width: 7px; height: 7px; }
         }
     </style>
 </head>
 <body>
-    <!-- SPLASH SCREEN -->
+    <!-- ============================================
+    SPLASH SCREEN - MINIMAL PREMIUM
+    ============================================ -->
     <div id="splash-screen">
-        <div class="splash-logo"><i class="fas fa-leaf"></i> AVORA</div>
-        <div class="splash-sub">MART</div>
-        <div class="loader-splash"></div>
+        <!-- Moldura -->
+        <div class="splash-frame"></div>
+
+        <!-- Cantos com dots -->
+        <div class="splash-corner-dot tl"></div>
+        <div class="splash-corner-dot tr"></div>
+        <div class="splash-corner-dot bl"></div>
+        <div class="splash-corner-dot br"></div>
+
+        <div class="splash-content">
+            <!-- Logo com efeito glass -->
+            <div class="splash-logo">
+                <div class="icon-glass">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <div class="brand-name">Avora<span class="highlight">Mart</span></div>
+                <div class="brand-sub">Fresh Groceries</div>
+            </div>
+
+            <!-- Divisor com diamante -->
+            <div class="splash-divider-premium">
+                <div class="line"></div>
+                <div class="diamond"></div>
+                <div class="line"></div>
+            </div>
+
+            <!-- Tagline -->
+            <div class="splash-tagline">
+                <i class="fas fa-circle"></i>
+                Quality produce, delivered fresh
+                <i class="fas fa-circle"></i>
+            </div>
+
+            <!-- Loader -->
+            <div class="splash-loader">
+                <div class="loader-dots-modern">
+                    <div class="loader-dot-modern"></div>
+                    <div class="loader-dot-modern"></div>
+                    <div class="loader-dot-modern"></div>
+                    <div class="loader-dot-modern"></div>
+                    <div class="loader-dot-modern"></div>
+                </div>
+                <div class="loader-label">Loading</div>
+            </div>
+        </div>
     </div>
 
     <div id="app-wrapper">
@@ -1553,8 +1831,8 @@
             setTimeout(() => {
                 document.getElementById('splash-screen').style.display = 'none';
                 document.getElementById('app-wrapper').classList.add('show');
-            }, 800);
-        }, 3000);
+            }, 700);
+        }, 3200);
 
         // ============================================
         // NAVEGAÇÃO
@@ -1595,10 +1873,8 @@
         let currentProduct = {};
 
         function openDetail(name, weight, price, oldPrice, discount, image, description) {
-            // Salvar produto atual
             currentProduct = { name, weight, price, oldPrice, discount, image, description };
 
-            // Preencher dados
             document.getElementById('detailTitle').textContent = name;
             document.getElementById('detailWeight').textContent = weight;
             document.getElementById('detailCurrentPrice').textContent = price;
@@ -1608,7 +1884,6 @@
             document.getElementById('detailImage').src = image;
             document.getElementById('detailDescription').textContent = description;
             
-            // Mostrar/esconder old price
             const oldPriceEl = document.getElementById('detailOldPrice');
             const discountPercentEl = document.getElementById('detailDiscountPercent');
             const discountBadgeEl = document.getElementById('detailDiscountBadge');
@@ -1622,17 +1897,12 @@
                 discountBadgeEl.style.display = 'none';
             }
 
-            // Total price = current price
             document.getElementById('detailTotalPrice').textContent = price;
-
-            // Esconder search
             document.getElementById('global-search').classList.remove('show');
 
-            // Mudar para tela de detalhe
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById('screen-detail').classList.add('active');
 
-            // Atualizar navs
             document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
             document.querySelectorAll('.desktop-nav .links a').forEach(link => link.classList.remove('active'));
 
@@ -1644,7 +1914,6 @@
             document.getElementById('screen-home').classList.add('active');
             document.getElementById('global-search').classList.add('show');
 
-            // Ativar navs
             document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
             document.querySelector('.nav-item').classList.add('active');
             
@@ -1754,7 +2023,6 @@
             alert('🔍 Abrir filtros de pedidos');
         });
 
-        // Corações nos detalhes e produtos
         document.querySelectorAll('.detail-favorite, .favorite').forEach(el => {
             el.addEventListener('click', function(e) {
                 e.stopPropagation();
@@ -1769,7 +2037,6 @@
             });
         });
 
-        // Evitar que clique no botão de adicionar abra o detalhe
         document.querySelectorAll('.add-cart').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.stopPropagation();
