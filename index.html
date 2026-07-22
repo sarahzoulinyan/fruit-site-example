@@ -61,7 +61,6 @@
             pointer-events: none;
         }
 
-        /* --- Moldura decorativa --- */
         .splash-frame {
             position: absolute;
             top: 16px;
@@ -73,7 +72,6 @@
             pointer-events: none;
         }
 
-        /* --- Cantos com detalhe --- */
         .splash-corner-dot {
             position: absolute;
             width: 6px;
@@ -82,13 +80,11 @@
             border-radius: 50%;
             opacity: 0.2;
         }
-
         .splash-corner-dot.tl { top: 28px; left: 28px; }
         .splash-corner-dot.tr { top: 28px; right: 28px; }
         .splash-corner-dot.bl { bottom: 28px; left: 28px; }
         .splash-corner-dot.br { bottom: 28px; right: 28px; }
 
-        /* --- Conteúdo --- */
         .splash-content {
             display: flex;
             flex-direction: column;
@@ -98,7 +94,6 @@
             z-index: 2;
         }
 
-        /* --- Logo com efeito de vidro --- */
         .splash-logo {
             display: flex;
             flex-direction: column;
@@ -142,11 +137,7 @@
             line-height: 1;
             margin-top: 10px;
         }
-
-        .splash-logo .brand-name .highlight {
-            color: #8bc34a;
-        }
-
+        .splash-logo .brand-name .highlight { color: #8bc34a; }
         .splash-logo .brand-sub {
             font-size: 0.6rem;
             font-weight: 600;
@@ -156,20 +147,17 @@
             margin-top: 2px;
         }
 
-        /* --- Divisor com diamante --- */
         .splash-divider-premium {
             display: flex;
             align-items: center;
             gap: 14px;
             margin: 18px 0 16px;
         }
-
         .splash-divider-premium .line {
             width: 30px;
             height: 1px;
             background: #e8e8e8;
         }
-
         .splash-divider-premium .diamond {
             width: 6px;
             height: 6px;
@@ -190,7 +178,6 @@
             }
         }
 
-        /* --- Tagline minimal --- */
         .splash-tagline {
             color: #999;
             font-size: 0.8rem;
@@ -199,7 +186,6 @@
             opacity: 0;
             animation: fadeSlideUp 0.8s ease 0.3s forwards;
         }
-
         .splash-tagline i {
             color: #8bc34a;
             font-size: 0.4rem;
@@ -208,17 +194,10 @@
         }
 
         @keyframes fadeSlideUp {
-            from {
-                opacity: 0;
-                transform: translateY(12px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- Loader com pontos modernos --- */
         .splash-loader {
             margin-top: 44px;
             display: flex;
@@ -233,7 +212,6 @@
             display: flex;
             gap: 10px;
         }
-
         .loader-dot-modern {
             width: 8px;
             height: 8px;
@@ -241,37 +219,15 @@
             background: #dcedc8;
             animation: dotModernBounce 1.2s ease-in-out infinite;
         }
-
-        .loader-dot-modern:nth-child(1) {
-            animation-delay: 0s;
-            background: #c5e1a5;
-        }
-        .loader-dot-modern:nth-child(2) {
-            animation-delay: 0.2s;
-            background: #8bc34a;
-        }
-        .loader-dot-modern:nth-child(3) {
-            animation-delay: 0.4s;
-            background: #689f38;
-        }
-        .loader-dot-modern:nth-child(4) {
-            animation-delay: 0.6s;
-            background: #8bc34a;
-        }
-        .loader-dot-modern:nth-child(5) {
-            animation-delay: 0.8s;
-            background: #c5e1a5;
-        }
+        .loader-dot-modern:nth-child(1) { animation-delay: 0s; background: #c5e1a5; }
+        .loader-dot-modern:nth-child(2) { animation-delay: 0.2s; background: #8bc34a; }
+        .loader-dot-modern:nth-child(3) { animation-delay: 0.4s; background: #689f38; }
+        .loader-dot-modern:nth-child(4) { animation-delay: 0.6s; background: #8bc34a; }
+        .loader-dot-modern:nth-child(5) { animation-delay: 0.8s; background: #c5e1a5; }
 
         @keyframes dotModernBounce {
-            0%, 100% {
-                transform: translateY(0) scale(0.8);
-                opacity: 0.3;
-            }
-            50% {
-                transform: translateY(-12px) scale(1.1);
-                opacity: 1;
-            }
+            0%, 100% { transform: translateY(0) scale(0.8); opacity: 0.3; }
+            50% { transform: translateY(-12px) scale(1.1); opacity: 1; }
         }
 
         .loader-label {
@@ -335,7 +291,7 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.04);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.5);
+            border: 2px solid #8bc34a;
             transition: all 0.3s ease;
         }
 
@@ -367,7 +323,6 @@
         #screen-login .login-header h1 span { color: #8bc34a; }
         #screen-login .login-header p { color: #666; font-size: 1rem; }
 
-        /* --- INPUTS --- */
         .input-group { margin-bottom: 20px; }
         .input-group label { 
             display: block; 
@@ -397,7 +352,6 @@
         }
         .input-group input::placeholder { color: #aaa; }
 
-        /* --- LOGIN OPTIONS --- */
         .login-options { 
             display: flex; 
             justify-content: space-between; 
@@ -425,7 +379,6 @@
         }
         .login-options a:hover { color: #689f38; text-decoration: underline; }
 
-        /* --- BOTÃO LOGIN --- */
         .btn-login { 
             width: 100%; 
             padding: 18px; 
@@ -449,7 +402,6 @@
         }
         .btn-login:active { transform: translateY(0); }
 
-        /* --- SOCIAL --- */
         .social-divider { 
             text-align: center; 
             color: #999; 
@@ -798,7 +750,6 @@
         }
         .section-header a:hover { color: #33691e; }
 
-        /* --- CATEGORIAS --- */
         .categories-scroll { 
             display: flex; 
             gap: 18px; 
@@ -843,7 +794,6 @@
             color: #444; 
         }
 
-        /* --- FLASH DEAL --- */
         .flash-deal-timer { display: flex; gap: 5px; align-items: center; }
         .timer-box { 
             background: #33691e; 
@@ -857,7 +807,6 @@
         }
         .timer-sep { font-weight: 700; color: #33691e; }
 
-        /* --- PRODUCT GRID --- */
         .product-grid { 
             display: grid; 
             grid-template-columns: 1fr 1fr; 
@@ -1026,67 +975,69 @@
         .logout-btn span { font-weight: 600; font-size: 0.95rem; }
 
         /* ============================================
-           PRODUCT DETAIL SCREEN
+           PRODUCT DETAIL SCREEN - NOVO DESIGN
            ============================================ */
         #screen-detail {
-            padding-top: 20px;
+            padding: 16px 16px 100px 16px;
         }
+
         .detail-back {
             display: inline-flex;
             align-items: center;
             gap: 10px;
             color: #33691e;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             margin-bottom: 20px;
             cursor: pointer;
             transition: 0.3s;
+            padding: 6px 0;
         }
         .detail-back:hover {
             color: #1b5e20;
             transform: translateX(-4px);
         }
         .detail-back i {
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
         .detail-image-wrapper {
             background: #f8faf7;
-            border-radius: 24px;
-            padding: 40px;
+            border-radius: 20px;
+            padding: 30px;
             text-align: center;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             position: relative;
         }
         .detail-image-wrapper img {
-            max-height: 280px;
+            max-height: 220px;
             width: auto;
             margin: 0 auto;
             display: block;
         }
         .detail-discount-badge {
             position: absolute;
-            top: 16px;
-            left: 16px;
+            top: 12px;
+            left: 12px;
             background: #e53935;
             color: white;
-            padding: 6px 16px;
+            padding: 4px 14px;
             border-radius: 20px;
             font-weight: 700;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
         }
         .detail-favorite {
             position: absolute;
-            top: 16px;
-            right: 16px;
+            top: 12px;
+            right: 12px;
             background: white;
-            width: 44px;
-            height: 44px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: #ddd;
             box-shadow: 0 2px 12px rgba(0,0,0,0.06);
             transition: 0.3s;
@@ -1098,23 +1049,25 @@
         }
 
         .detail-title {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 700;
             color: #1a1a1a;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .detail-meta {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 16px;
             color: #777;
-            font-size: 0.9rem;
-            margin-bottom: 16px;
+            font-size: 0.85rem;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
         }
         .detail-meta i {
-            margin-right: 6px;
+            margin-right: 5px;
             color: #8bc34a;
+            font-size: 0.8rem;
         }
         .detail-meta span {
             display: flex;
@@ -1124,18 +1077,19 @@
         .detail-price-row {
             display: flex;
             align-items: baseline;
-            gap: 14px;
-            margin-bottom: 24px;
-            padding-bottom: 24px;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
             border-bottom: 1px solid #f0f0f0;
+            flex-wrap: wrap;
         }
         .detail-current-price {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             font-weight: 800;
             color: #1a1a1a;
         }
         .detail-old-price {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #999;
             text-decoration: line-through;
         }
@@ -1143,58 +1097,58 @@
             background: #e8f5e9;
             color: #2e7d32;
             font-weight: 700;
-            font-size: 0.8rem;
-            padding: 4px 14px;
+            font-size: 0.75rem;
+            padding: 3px 12px;
             border-radius: 20px;
         }
 
         .detail-description {
-            margin-bottom: 28px;
+            margin-bottom: 20px;
         }
         .detail-description h4 {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
             color: #1a1a1a;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
         }
         .detail-description p {
             color: #666;
             line-height: 1.6;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .detail-total {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 16px 0;
+            padding: 14px 0;
             border-top: 1px solid #f0f0f0;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
         .detail-total label {
             font-weight: 600;
             color: #444;
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
         .detail-total .total-price {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: 800;
             color: #1a1a1a;
         }
 
         .detail-add-btn {
             width: 100%;
-            padding: 18px;
+            padding: 16px;
             background: #8bc34a;
             color: white;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 700;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             box-shadow: 0 4px 16px rgba(139,195,74,0.3);
         }
         .detail-add-btn:hover {
@@ -1204,6 +1158,13 @@
         }
         .detail-add-btn:active {
             transform: translateY(0);
+        }
+
+        /* --- Classe para esconder navs no detail e login --- */
+        .hide-nav .desktop-nav,
+        .hide-nav .mobile-header,
+        .hide-nav .bottom-nav {
+            display: none !important;
         }
 
         /* --- RESPONSIVE --- */
@@ -1231,9 +1192,13 @@
             .screen { padding: 0 40px 40px 40px; }
             #screen-orders.active,
             #screen-chat.active,
-            #screen-profile.active,
-            #screen-detail.active {
+            #screen-profile.active {
                 padding-top: 40px;
+            }
+            #screen-detail.active {
+                padding: 40px 40px 60px 40px;
+                max-width: 600px;
+                margin: 0 auto;
             }
             .search-area { padding: 0 40px 0; }
             .product-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
@@ -1243,8 +1208,24 @@
             .product-card img { height: 160px; }
             .order-card { padding: 20px; }
             .order-card img { width: 80px; height: 80px; }
-            .detail-image-wrapper img { max-height: 360px; }
-            .detail-title { font-size: 2.2rem; }
+            .detail-image-wrapper img { max-height: 300px; }
+            .detail-title { font-size: 2rem; }
+            .detail-current-price { font-size: 2rem; }
+            .detail-image-wrapper { padding: 40px; }
+
+            /* Esconde navs no detail em telas grandes */
+            body.detail-active .desktop-nav,
+            body.detail-active .mobile-header,
+            body.detail-active .bottom-nav {
+                display: none !important;
+            }
+            
+            /* Esconde navs no login em telas grandes */
+            body.login-active .desktop-nav,
+            body.login-active .mobile-header,
+            body.login-active .bottom-nav {
+                display: none !important;
+            }
         }
 
         @media (min-width: 769px) and (max-width: 1023px) {
@@ -1254,9 +1235,21 @@
             .product-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
             #screen-orders.active,
             #screen-chat.active,
-            #screen-profile.active,
-            #screen-detail.active {
+            #screen-profile.active {
                 padding-top: 28px;
+            }
+            #screen-detail.active {
+                padding-top: 16px;
+            }
+
+            body.detail-active .mobile-header,
+            body.detail-active .bottom-nav {
+                display: none !important;
+            }
+            
+            body.login-active .mobile-header,
+            body.login-active .bottom-nav {
+                display: none !important;
             }
         }
 
@@ -1271,9 +1264,11 @@
             .screen { padding: 0 15px 80px 15px; }
             #screen-orders.active,
             #screen-chat.active,
-            #screen-profile.active,
-            #screen-detail.active {
+            #screen-profile.active {
                 padding-top: 24px;
+            }
+            #screen-detail.active {
+                padding: 12px 12px 90px 12px;
             }
             .search-area { padding: 0 15px 0; margin-top: 20px; }
             .mobile-header { padding: 12px 15px; height: 60px; }
@@ -1287,13 +1282,23 @@
             .banner-promo h1 { font-size: 1.6rem; }
             .banner-img { width: 100px; height: 100px; }
             .categories-scroll { margin-bottom: 28px; gap: 14px; }
-            .detail-image-wrapper { padding: 24px; }
-            .detail-image-wrapper img { max-height: 200px; }
+            .detail-image-wrapper { padding: 20px; }
+            .detail-image-wrapper img { max-height: 180px; }
             .detail-title { font-size: 1.4rem; }
-            .detail-current-price { font-size: 1.6rem; }
-            .detail-total .total-price { font-size: 1.3rem; }
+            .detail-current-price { font-size: 1.5rem; }
+            .detail-total .total-price { font-size: 1.2rem; }
             .order-card { flex-direction: column; align-items: flex-start; }
             .order-status { text-align: left; width: 100%; margin-top: 10px; }
+
+            body.detail-active .mobile-header,
+            body.detail-active .bottom-nav {
+                display: none !important;
+            }
+            
+            body.login-active .mobile-header,
+            body.login-active .bottom-nav {
+                display: none !important;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1316,12 +1321,17 @@
             .banner-img { width: 80px; height: 80px; }
             #screen-orders.active,
             #screen-chat.active,
-            #screen-profile.active,
-            #screen-detail.active {
+            #screen-profile.active {
                 padding-top: 20px;
             }
-            .detail-meta { flex-wrap: wrap; gap: 10px; font-size: 0.8rem; }
-            .detail-price-row { flex-wrap: wrap; }
+            #screen-detail.active {
+                padding: 10px 10px 80px 10px;
+            }
+            .detail-meta { gap: 10px; font-size: 0.75rem; }
+            .detail-price-row { gap: 8px; }
+            .detail-current-price { font-size: 1.3rem; }
+            .detail-image-wrapper img { max-height: 150px; }
+            .detail-title { font-size: 1.2rem; }
 
             /* Ajustes da splash em mobile */
             .splash-logo .brand-name { font-size: 2rem; }
@@ -1334,7 +1344,7 @@
             .loader-dot-modern { width: 7px; height: 7px; }
         }
 
-        /* Correção para Safari - centralização da splash */
+        /* Correção para Safari */
         @supports (-webkit-touch-callout: none) {
             #splash-screen {
                 height: -webkit-fill-available;
@@ -1356,17 +1366,13 @@
     SPLASH SCREEN - MINIMAL PREMIUM
     ============================================ -->
     <div id="splash-screen">
-        <!-- Moldura -->
         <div class="splash-frame"></div>
-
-        <!-- Cantos com dots -->
         <div class="splash-corner-dot tl"></div>
         <div class="splash-corner-dot tr"></div>
         <div class="splash-corner-dot bl"></div>
         <div class="splash-corner-dot br"></div>
 
         <div class="splash-content">
-            <!-- Logo com efeito glass -->
             <div class="splash-logo">
                 <div class="icon-glass">
                     <i class="fas fa-leaf"></i>
@@ -1375,21 +1381,18 @@
                 <div class="brand-sub">Fresh Groceries</div>
             </div>
 
-            <!-- Divisor com diamante -->
             <div class="splash-divider-premium">
                 <div class="line"></div>
                 <div class="diamond"></div>
                 <div class="line"></div>
             </div>
 
-            <!-- Tagline -->
             <div class="splash-tagline">
                 <i class="fas fa-circle"></i>
                 Quality produce, delivered fresh
                 <i class="fas fa-circle"></i>
             </div>
 
-            <!-- Loader -->
             <div class="splash-loader">
                 <div class="loader-dots-modern">
                     <div class="loader-dot-modern"></div>
@@ -1521,7 +1524,6 @@
                     </div>
                 </div>
                 <div class="product-grid">
-                    <!-- Laranja -->
                     <div class="product-card" onclick="openDetail('Navel Orange', '1 kg', '$4.50/kg', '$6.00', '30% OFF', 'https://pngimg.com/d/orange_PNG812.png', 'Experience the pinnacle of nutrition with our farm-fresh Navel Orange. Harvested at peak maturity, this nutrient-dense superfood is rich in vitamin C and antioxidants.')">
                         <span class="discount">-30%</span>
                         <i class="far fa-heart favorite"></i>
@@ -1534,7 +1536,6 @@
                             <button class="add-cart"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
-                    <!-- Brócolis -->
                     <div class="product-card" onclick="openDetail('Organic Broccoli', '500g', '$2.80/kg', '$3.50', '20% OFF', 'https://pngimg.com/uploads/broccoli/broccoli_PNG72950.png', 'Fresh organic broccoli packed with essential vitamins and minerals. Perfect for a healthy diet.')">
                         <span class="discount">-20%</span>
                         <i class="far fa-heart favorite"></i>
@@ -1547,7 +1548,6 @@
                             <button class="add-cart"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
-                    <!-- Morango -->
                     <div class="product-card" onclick="openDetail('Red Strawberry', '250g', '$3.40/kg', '$4.00', '15% OFF', 'https://pngimg.com/d/strawberry_PNG2596.png', 'Sweet and juicy red strawberries, freshly picked. Rich in vitamin C and antioxidants.')">
                         <span class="discount">-15%</span>
                         <i class="far fa-heart favorite"></i>
@@ -1560,7 +1560,6 @@
                             <button class="add-cart"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
-                    <!-- Abacate -->
                     <div class="product-card" onclick="openDetail('Fresh Avocado', '2 units', '$5.25/kg', '$7.00', '25% OFF', 'https://pngimg.com/uploads/avocado/avocado_PNG15516.png', 'Creamy and nutritious avocados, perfect for salads, toast, or guacamole. Packed with healthy fats.')">
                         <span class="discount">-25%</span>
                         <i class="far fa-heart favorite"></i>
@@ -1580,7 +1579,6 @@
                     <a href="#">See All</a>
                 </div>
                 <div class="product-grid">
-                    <!-- Banana -->
                     <div class="product-card" onclick="openDetail('Fresh Banana', '1kg', '$1.50', '', '', 'https://pngimg.com/d/banana_PNG839.png', 'Fresh bananas, rich in potassium and dietary fiber. Perfect for a healthy snack.')">
                         <i class="far fa-heart favorite"></i>
                         <img src="https://pngimg.com/d/banana_PNG839.png" alt="Banana">
@@ -1592,7 +1590,6 @@
                             <button class="add-cart"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
-                    <!-- Maçã -->
                     <div class="product-card" onclick="openDetail('Green Apple', '1kg', '$3.20', '', '', 'https://pngimg.com/uploads/apple/apple_PNG12483.png', 'Crisp and juicy green apples. Great for eating fresh or making delicious pies and sauces.')">
                         <i class="far fa-heart favorite"></i>
                         <img src="https://pngimg.com/uploads/apple/apple_PNG12483.png" alt="Apple">
@@ -1604,7 +1601,6 @@
                             <button class="add-cart"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
-                    <!-- Limão -->
                     <div class="product-card" onclick="openDetail('Fresh Lemon', '500g', '$2.10', '', '', 'https://pngimg.com/uploads/lemon/lemon_PNG25177.png', 'Fresh lemons packed with vitamin C. Perfect for refreshing drinks and culinary uses.')">
                         <i class="far fa-heart favorite"></i>
                         <img src="https://pngimg.com/uploads/lemon/lemon_PNG25177.png" alt="Lemon">
@@ -1616,7 +1612,6 @@
                             <button class="add-cart"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
-                    <!-- Uva -->
                     <div class="product-card" onclick="openDetail('Red Grapes', '500g', '$4.90', '', '', 'https://pngimg.com/uploads/grape/grape_PNG2979.png', 'Sweet and flavorful red grapes. Perfect for snacking, wine making, or adding to fruit salads.')">
                         <i class="far fa-heart favorite"></i>
                         <img src="https://pngimg.com/uploads/grape/grape_PNG2979.png" alt="Grape">
@@ -1644,7 +1639,6 @@
                     <span>Delivered</span>
                     <span>Cancel</span>
                 </div>
-                <!-- Order 1 - Abacate -->
                 <div class="order-card">
                     <img src="https://pngimg.com/uploads/avocado/avocado_PNG15516.png" alt="Avocado">
                     <div class="order-info">
@@ -1658,7 +1652,6 @@
                         <button class="order-btn">Reorder</button>
                     </div>
                 </div>
-                <!-- Order 2 - Leite (substituído por iogurte) -->
                 <div class="order-card">
                     <img src="https://pngimg.com/uploads/milk/milk_PNG12700.png" alt="Dairy">
                     <div class="order-info">
@@ -1672,7 +1665,6 @@
                         <button class="order-btn track">Track Order</button>
                     </div>
                 </div>
-                <!-- Order 3 - Morango -->
                 <div class="order-card">
                     <img src="https://pngimg.com/d/strawberry_PNG2596.png" alt="Smoothie">
                     <div class="order-info">
@@ -1686,7 +1678,6 @@
                         <button class="order-btn">Reorder</button>
                     </div>
                 </div>
-                <!-- Order 4 - Limão -->
                 <div class="order-card">
                     <img src="https://pngimg.com/uploads/lemon/lemon_PNG25177.png" alt="Lemon">
                     <div class="order-info">
@@ -1702,7 +1693,7 @@
                 </div>
             </div>
 
-            <!-- DETAIL -->
+            <!-- DETAIL - NOVO DESIGN -->
             <div id="screen-detail" class="screen">
                 <div class="detail-back" onclick="closeDetail()">
                     <i class="fas fa-arrow-left"></i> Back to Shop
@@ -1870,6 +1861,9 @@
             document.getElementById('mobile-header').style.display = 'none';
             document.getElementById('bottom-nav').style.display = 'none';
             document.getElementById('global-search').classList.remove('show');
+            
+            // Adiciona classe para esconder navs no login
+            document.body.classList.add('login-active');
         });
 
         // ============================================
@@ -1899,6 +1893,9 @@
                 searchArea.classList.remove('show');
             }
 
+            // Remove classe detail-active e login-active do body
+            document.body.classList.remove('detail-active', 'login-active');
+
             if (!isDesktop && element) {
                 document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
                 element.classList.add('active');
@@ -1911,6 +1908,24 @@
                         link.classList.add('active');
                     }
                 });
+            }
+
+            // Mostrar/esconder navs
+            if (screenId === 'screen-login') {
+                document.body.classList.add('login-active');
+                document.getElementById('desktop-header').style.display = 'none';
+                document.getElementById('mobile-header').style.display = 'none';
+                document.getElementById('bottom-nav').style.display = 'none';
+            } else if (screenId === 'screen-detail') {
+                document.body.classList.add('detail-active');
+                document.getElementById('desktop-header').style.display = 'none';
+                document.getElementById('mobile-header').style.display = 'none';
+                document.getElementById('bottom-nav').style.display = 'none';
+            } else {
+                const isDesktopView = window.innerWidth >= 1024;
+                document.getElementById('desktop-header').style.display = isDesktopView ? 'flex' : 'none';
+                document.getElementById('mobile-header').style.display = isDesktopView ? 'none' : 'flex';
+                document.getElementById('bottom-nav').style.display = isDesktopView ? 'none' : 'flex';
             }
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1955,6 +1970,12 @@
             document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
             document.querySelectorAll('.desktop-nav .links a').forEach(link => link.classList.remove('active'));
 
+            // Esconde navs no detail
+            document.body.classList.add('detail-active');
+            document.getElementById('desktop-header').style.display = 'none';
+            document.getElementById('mobile-header').style.display = 'none';
+            document.getElementById('bottom-nav').style.display = 'none';
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -1973,6 +1994,15 @@
                 }
             });
 
+            // Remove classe detail-active
+            document.body.classList.remove('detail-active');
+
+            // Restaura navs
+            const isDesktopView = window.innerWidth >= 1024;
+            document.getElementById('desktop-header').style.display = isDesktopView ? 'flex' : 'none';
+            document.getElementById('mobile-header').style.display = isDesktopView ? 'none' : 'flex';
+            document.getElementById('bottom-nav').style.display = isDesktopView ? 'none' : 'flex';
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -1988,15 +2018,12 @@
             document.getElementById('screen-home').classList.add('active');
             document.getElementById('global-search').classList.add('show');
 
-            if (window.innerWidth >= 1024) {
-                document.getElementById('desktop-header').style.display = 'flex';
-                document.getElementById('mobile-header').style.display = 'none';
-                document.getElementById('bottom-nav').style.display = 'none';
-            } else {
-                document.getElementById('desktop-header').style.display = 'none';
-                document.getElementById('mobile-header').style.display = 'flex';
-                document.getElementById('bottom-nav').style.display = 'flex';
-            }
+            document.body.classList.remove('login-active');
+
+            const isDesktopView = window.innerWidth >= 1024;
+            document.getElementById('desktop-header').style.display = isDesktopView ? 'flex' : 'none';
+            document.getElementById('mobile-header').style.display = isDesktopView ? 'none' : 'flex';
+            document.getElementById('bottom-nav').style.display = isDesktopView ? 'none' : 'flex';
 
             document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
             document.querySelector('.nav-item').classList.add('active');
@@ -2021,6 +2048,7 @@
                     screen.classList.remove('active');
                 });
                 document.getElementById('screen-login').classList.add('active');
+                document.body.classList.add('login-active');
                 document.getElementById('desktop-header').style.display = 'none';
                 document.getElementById('mobile-header').style.display = 'none';
                 document.getElementById('bottom-nav').style.display = 'none';
@@ -2034,7 +2062,10 @@
         // RESPONSIVIDADE
         // ============================================
         window.addEventListener('resize', function() {
-            if (document.getElementById('screen-login').classList.contains('active')) {
+            const isLoginActive = document.getElementById('screen-login').classList.contains('active');
+            const isDetailActive = document.getElementById('screen-detail').classList.contains('active');
+            
+            if (isLoginActive || isDetailActive) {
                 document.getElementById('desktop-header').style.display = 'none';
                 document.getElementById('mobile-header').style.display = 'none';
                 document.getElementById('bottom-nav').style.display = 'none';
@@ -2093,9 +2124,6 @@
             });
         });
 
-        // ============================================
-        // SUPRIMIR ERRO DO CHROME EXTENSION
-        // ============================================
         // Ignorar erro "Unchecked runtime.lastError"
         window.addEventListener('error', function(e) {
             if (e.message && e.message.includes('runtime.lastError')) {
