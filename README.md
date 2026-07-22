@@ -95,9 +95,9 @@
 
 <div align="center">
 
-**Desenvolvido com ❤️ por Pablo Gomes**
+**Desenvolvido por Pablo Gomes**
 
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/pablog-7)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/seu-usuario)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/pablogomesdev)
 
 </div>
