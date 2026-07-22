@@ -266,7 +266,6 @@
 
     /* ============================================
        LOGIN SCREEN — FULLSCREEN MOBILE PREMIUM
-       exatamente como a referência: imagem topo + formulário
        ============================================ */
     #screen-login {
       display: none;
@@ -533,79 +532,160 @@
     }
     .login-footer a:hover { color: #689f38; text-decoration: underline; }
 
+    /* ============================================
+       NAVEGAÇÃO PREMIUM - COMBINANDO COM O SITE
+       ============================================ */
+    
     /* --- DESKTOP NAV --- */
     .desktop-nav { 
       display: none; 
       background: #ffffff; 
       padding: 0 40px; 
-      height: 72px;
-      border-bottom: 1px solid #eee; 
+      height: 74px;
+      border-bottom: 1px solid rgba(0,0,0,0.04); 
       align-items: center; 
       justify-content: space-between; 
       position: sticky; 
       top: 0; 
-      z-index: 100; 
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
+    
     .desktop-nav .logo { 
-      font-size: 1.6rem; 
-      font-weight: 700; 
-      color: #33691e; 
+      font-size: 1.5rem; 
+      font-weight: 800; 
+      color: #1a1a1a; 
       display: flex; 
       align-items: center; 
       gap: 10px; 
+      letter-spacing: -0.5px;
     }
     .desktop-nav .logo i { 
       font-size: 1.8rem;
-      color: #8bc34a; 
+      color: #8bc34a;
+      background: rgba(139, 195, 74, 0.1);
+      padding: 8px;
+      border-radius: 14px;
     }
+    .desktop-nav .logo span { color: #8bc34a; }
+    
     .desktop-nav .links { 
       display: flex; 
-      gap: 40px;
+      gap: 8px;
       font-weight: 500; 
-      color: #555; 
+      color: #555;
+      background: #f5f7f5;
+      padding: 4px;
+      border-radius: 16px;
     }
     .desktop-nav .links a { 
-      padding: 5px 0; 
-      border-bottom: 3px solid transparent; 
-      transition: 0.3s; 
-      font-size: 0.95rem;
+      padding: 8px 20px; 
+      border-radius: 12px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #777;
+      position: relative;
     }
-    .desktop-nav .links a:hover, 
-    .desktop-nav .links a.active { 
+    .desktop-nav .links a:hover { 
       color: #33691e; 
-      border-bottom-color: #8bc34a; 
+      background: rgba(139, 195, 74, 0.08);
     }
+    .desktop-nav .links a.active { 
+      color: #1a1a1a; 
+      background: #ffffff;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .desktop-nav .links a .nav-dot {
+      display: none;
+      width: 6px;
+      height: 6px;
+      background: #8bc34a;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .desktop-nav .links a.active .nav-dot {
+      display: block;
+    }
+    
     .desktop-nav .actions { 
       display: flex; 
-      gap: 24px; 
+      gap: 20px; 
       font-size: 1.2rem; 
-      color: #333; 
+      color: #444;
+      align-items: center;
     }
-    .desktop-nav .actions .cart-badge { position: relative; }
+    .desktop-nav .actions .action-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      background: #f5f7f5;
+      color: #555;
+      position: relative;
+      cursor: pointer;
+    }
+    .desktop-nav .actions .action-btn:hover {
+      background: #e8f5e9;
+      color: #33691e;
+      transform: translateY(-2px);
+    }
+    .desktop-nav .actions .cart-badge { 
+      position: relative;
+    }
     .desktop-nav .actions .cart-badge span { 
       position: absolute; 
-      top: -8px; 
-      right: -8px; 
+      top: -4px; 
+      right: -4px; 
       background: #e53935; 
       color: white; 
-      font-size: 0.6rem; 
-      padding: 2px 6px; 
+      font-size: 0.55rem; 
+      padding: 2px 7px; 
       border-radius: 50%; 
-      font-weight: bold; 
+      font-weight: 700;
+      border: 2px solid white;
+    }
+    .desktop-nav .actions .avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #8bc34a, #33691e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .desktop-nav .actions .avatar:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 16px rgba(139, 195, 74, 0.3);
     }
 
     /* --- MOBILE HEADER --- */
     .mobile-header { 
       display: none; 
-      background: #ffffff; 
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       padding: 12px 20px; 
       height: 64px;
       justify-content: space-between; 
       align-items: center; 
-      box-shadow: 0 2px 10px rgba(0,0,0,0.03); 
+      box-shadow: 0 1px 20px rgba(0,0,0,0.03); 
       position: sticky; 
       top: 0; 
       z-index: 100; 
+      border-bottom: 1px solid rgba(0,0,0,0.03);
     }
     .user-info h2 { 
       font-size: 1.1rem; 
@@ -613,80 +693,158 @@
       color: #1a1a1a; 
       display: flex; 
       align-items: center; 
-      gap: 5px; 
+      gap: 6px; 
     }
-    .user-info h2 i { color: #8bc34a; }
+    .user-info h2 i { 
+      color: #8bc34a;
+      font-size: 0.9rem;
+      background: rgba(139, 195, 74, 0.1);
+      padding: 4px;
+      border-radius: 8px;
+    }
     .user-info p { 
-      font-size: 0.8rem; 
-      color: #777; 
+      font-size: 0.75rem; 
+      color: #888; 
       display: flex; 
       align-items: center; 
-      gap: 5px; 
-      margin-top: 2px; 
+      gap: 4px; 
+      margin-top: 1px; 
+    }
+    .user-info p i { 
+      font-size: 0.6rem;
+      color: #8bc34a;
     }
     .header-actions { 
       display: flex; 
-      gap: 15px; 
+      gap: 12px; 
       align-items: center; 
       font-size: 1.2rem; 
-      color: #333; 
+      color: #444; 
     }
-    .header-actions .cart-badge { position: relative; }
+    .header-actions .action-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s;
+      background: #f5f7f5;
+      color: #555;
+      cursor: pointer;
+      position: relative;
+    }
+    .header-actions .action-icon:hover {
+      background: #e8f5e9;
+      color: #33691e;
+    }
+    .header-actions .cart-badge { 
+      position: relative;
+    }
     .header-actions .cart-badge span { 
       position: absolute; 
-      top: -8px; 
-      right: -8px; 
+      top: -2px; 
+      right: -2px; 
       background: #e53935; 
       color: white; 
-      font-size: 0.6rem; 
+      font-size: 0.5rem; 
       padding: 2px 6px; 
       border-radius: 50%; 
-      font-weight: bold; 
+      font-weight: 700;
+      border: 2px solid white;
+      min-width: 18px;
+      text-align: center;
     }
 
-    /* --- BOTTOM NAV --- */
+    /* --- BOTTOM NAV PREMIUM --- */
     .bottom-nav { 
       display: none; 
       position: fixed; 
       bottom: 0; 
       left: 0; 
       width: 100%; 
-      background: white; 
-      padding: 10px 0; 
-      padding-bottom: calc(10px + env(safe-area-inset-bottom)); 
-      border-top: 1px solid #eee; 
-      box-shadow: 0 -2px 15px rgba(0,0,0,0.05); 
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 8px 0; 
+      padding-bottom: calc(8px + env(safe-area-inset-bottom)); 
+      border-top: 1px solid rgba(0,0,0,0.04); 
+      box-shadow: 0 -4px 30px rgba(0,0,0,0.03); 
       justify-content: space-around; 
       z-index: 999; 
     }
     .bottom-nav.show { display: flex; }
+    
     .nav-item { 
       display: flex; 
       flex-direction: column; 
       align-items: center; 
-      color: #999; 
-      font-size: 0.65rem; 
-      font-weight: 500; 
+      color: #aaa; 
+      font-size: 0.6rem; 
+      font-weight: 600; 
       cursor: pointer; 
-      transition: 0.3s; 
-      gap: 3px; 
-      padding: 4px 12px; 
-      border-radius: 10px; 
-      position: relative; 
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+      gap: 2px; 
+      padding: 4px 14px; 
+      border-radius: 14px; 
+      position: relative;
+      min-width: 56px;
     }
-    .nav-item i { font-size: 1.4rem; transition: 0.3s; }
-    .nav-item.active { color: #33691e; }
-    .nav-item.active i { transform: translateY(-2px); }
+    .nav-item i { 
+      font-size: 1.3rem; 
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav-item span { 
+      transition: 0.3s;
+      font-size: 0.6rem;
+      letter-spacing: 0.3px;
+    }
+    .nav-item.active { 
+      color: #33691e; 
+    }
+    .nav-item.active i { 
+      transform: translateY(-2px) scale(1.05);
+      color: #8bc34a;
+    }
+    .nav-item.active span {
+      color: white;
+      font-weight: 700;
+    }
     .nav-item .nav-badge { 
       position: absolute; 
       top: 0; 
-      right: 0; 
+      right: 4px; 
       background: #e53935; 
       color: white; 
-      font-size: 0.55rem; 
+      font-size: 0.5rem; 
       padding: 1px 6px; 
       border-radius: 50%; 
-      font-weight: bold; 
+      font-weight: 700;
+      min-width: 18px;
+      text-align: center;
+      border: 2px solid white;
+    }
+    .nav-item .nav-icon-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-item .nav-indicator {
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 4px;
+      background: #8bc34a;
+      border-radius: 50%;
+      opacity: 0;
+      transition: 0.3s;
+    }
+    .nav-item.active .nav-indicator {
+      opacity: 1;
+      bottom: -4px;
     }
 
     /* --- SEARCH AREA --- */
@@ -1498,6 +1656,17 @@
       .splash-corner-dot.bl { bottom: 22px; left: 22px; }
       .splash-corner-dot.br { bottom: 22px; right: 22px; }
       .loader-dot-modern { width: 7px; height: 7px; }
+
+      /* Bottom nav mobile ajustes */
+      .bottom-nav { padding: 6px 0; padding-bottom: calc(6px + env(safe-area-inset-bottom)); }
+      .nav-item { padding: 2px 10px; min-width: 48px; }
+      .nav-item i { font-size: 1.1rem; }
+      .nav-item span { font-size: 0.55rem; }
+      .nav-item .nav-badge { font-size: 0.45rem; min-width: 14px; padding: 1px 4px; top: -2px; right: 0; }
+      
+      .mobile-header { padding: 10px 15px; height: 56px; }
+      .user-info h2 { font-size: 0.95rem; }
+      .header-actions .action-icon { width: 34px; height: 34px; font-size: 1rem; }
     }
 
     @supports (-webkit-touch-callout: none) {
@@ -1596,30 +1765,62 @@
         </div>
       </div>
 
-      <!-- DESKTOP NAV -->
+      <!-- DESKTOP NAV PREMIUM -->
       <nav class="desktop-nav" id="desktop-header">
-        <div class="logo"><i class="fas fa-leaf"></i> Avora Mart</div>
+        <div class="logo">
+          <i class="fas fa-leaf"></i> 
+          Avora<span>Mart</span>
+        </div>
         <div class="links">
-          <a href="#" class="active" onclick="changeScreen('screen-home', null, true)">Shop</a>
-          <a href="#" onclick="changeScreen('screen-orders', null, true)">Orders</a>
-          <a href="#" onclick="changeScreen('screen-chat', null, true)">Chat</a>
-          <a href="#" onclick="changeScreen('screen-profile', null, true)">Profile</a>
+          <a href="#" class="active" onclick="changeScreen('screen-home', null, true)">
+            Shop
+            <span class="nav-dot"></span>
+          </a>
+          <a href="#" onclick="changeScreen('screen-orders', null, true)">
+            Orders
+            <span class="nav-dot"></span>
+          </a>
+          <a href="#" onclick="changeScreen('screen-chat', null, true)">
+            Chat
+            <span class="nav-dot"></span>
+          </a>
+          <a href="#" onclick="changeScreen('screen-profile', null, true)">
+            Profile
+            <span class="nav-dot"></span>
+          </a>
         </div>
         <div class="actions">
-          <i class="far fa-heart"></i>
-          <div class="cart-badge"><i class="fas fa-shopping-cart"></i><span>3</span></div>
+          <div class="action-btn" title="Favorites">
+            <i class="far fa-heart"></i>
+          </div>
+          <div class="action-btn cart-badge" title="Cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span>3</span>
+          </div>
+          <div class="avatar" title="Profile">C</div>
         </div>
       </nav>
 
-      <!-- MOBILE HEADER -->
+      <!-- MOBILE HEADER PREMIUM -->
       <header class="mobile-header" id="mobile-header">
         <div class="user-info">
-          <h2>Hi, Cliente <i class="fas fa-leaf"></i></h2>
-          <p><i class="fas fa-map-marker-alt"></i> Central Park, NY</p>
+          <h2>
+            Hi, Cliente 
+            <i class="fas fa-leaf"></i>
+          </h2>
+          <p>
+            <i class="fas fa-map-marker-alt"></i> 
+            Central Park, NY
+          </p>
         </div>
         <div class="header-actions">
-          <i class="far fa-bell"></i>
-          <div class="cart-badge"><i class="fas fa-shopping-cart"></i><span>3</span></div>
+          <div class="action-icon" title="Notifications">
+            <i class="far fa-bell"></i>
+          </div>
+          <div class="action-icon cart-badge" title="Cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span>3</span>
+          </div>
         </div>
       </header>
 
@@ -1802,12 +2003,38 @@
         <div class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt icon"></i><span>Log Out</span><i class="fas fa-chevron-right arrow" style="color:#ccc;"></i></div>
       </div>
 
-      <!-- BOTTOM NAV -->
+      <!-- BOTTOM NAV PREMIUM -->
       <div class="bottom-nav" id="bottom-nav">
-        <div class="nav-item" onclick="changeScreen('screen-home', this, false)"><i class="fas fa-store"></i><span>Shop</span></div>
-        <div class="nav-item" onclick="changeScreen('screen-orders', this, false)"><i class="fas fa-clipboard-list"></i><span>Orders</span><span class="nav-badge">2</span></div>
-        <div class="nav-item" onclick="changeScreen('screen-chat', this, false)"><i class="fas fa-comment-dots"></i><span>Chat</span><span class="nav-badge">3</span></div>
-        <div class="nav-item" onclick="changeScreen('screen-profile', this, false)"><i class="fas fa-user"></i><span>Profile</span></div>
+        <div class="nav-item" onclick="changeScreen('screen-home', this, false)">
+          <div class="nav-icon-wrapper">
+            <i class="fas fa-store"></i>
+            <span class="nav-indicator"></span>
+          </div>
+          <span>Shop</span>
+        </div>
+        <div class="nav-item" onclick="changeScreen('screen-orders', this, false)">
+          <div class="nav-icon-wrapper">
+            <i class="fas fa-clipboard-list"></i>
+            <span class="nav-badge">2</span>
+            <span class="nav-indicator"></span>
+          </div>
+          <span>Orders</span>
+        </div>
+        <div class="nav-item" onclick="changeScreen('screen-chat', this, false)">
+          <div class="nav-icon-wrapper">
+            <i class="fas fa-comment-dots"></i>
+            <span class="nav-badge">3</span>
+            <span class="nav-indicator"></span>
+          </div>
+          <span>Chat</span>
+        </div>
+        <div class="nav-item" onclick="changeScreen('screen-profile', this, false)">
+          <div class="nav-icon-wrapper">
+            <i class="fas fa-user"></i>
+            <span class="nav-indicator"></span>
+          </div>
+          <span>Profile</span>
+        </div>
       </div>
     </div>
   </div>
