@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Avora Mart · Login</title>
+  <title>AvoraFRUIT · Login</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     /* --- RESET & GLOBAL --- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -131,13 +131,17 @@
 
     .splash-logo .brand-name {
       font-size: 2.4rem;
-      font-weight: 800;
+      font-weight: 900;
       color: #1a1a1a;
       letter-spacing: -1.5px;
       line-height: 1;
       margin-top: 10px;
+      background: linear-gradient(135deg, #33691e 0%, #8bc34a 50%, #66bb6a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 2px 30px rgba(139, 195, 74, 0.15);
     }
-    .splash-logo .brand-name .highlight { color: #8bc34a; }
     .splash-logo .brand-sub {
       font-size: 0.6rem;
       font-weight: 600;
@@ -336,6 +340,10 @@
       text-shadow: 0 2px 12px rgba(0,0,0,0.2);
       letter-spacing: -0.5px;
       margin-top: 8px;
+      background: linear-gradient(135deg, #ffffff 0%, #c8e6c9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .login-hero .hero-overlay p {
       font-size: 0.85rem;
@@ -364,13 +372,18 @@
       align-items: center;
       gap: 8px;
       font-size: 1.2rem;
-      font-weight: 700;
-      color: #33691e;
+      font-weight: 900;
+      color: #1a1a1a;
       margin-bottom: 20px;
+      background: linear-gradient(135deg, #33691e 0%, #8bc34a 60%, #66bb6a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .login-content .login-brand i {
       font-size: 1.2rem;
       color: #8bc34a;
+      -webkit-text-fill-color: #8bc34a;
     }
 
     .login-content .login-header { margin-bottom: 24px; }
@@ -381,7 +394,12 @@
       margin-bottom: 4px; 
       line-height: 1.2; 
     }
-    .login-content .login-header h1 span { color: #8bc34a; }
+    .login-content .login-header h1 span { 
+      background: linear-gradient(135deg, #33691e 0%, #8bc34a 60%, #66bb6a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
     .login-content .login-header p { color: #666; font-size: 0.9rem; }
 
     .input-group { margin-bottom: 16px; }
@@ -554,12 +572,16 @@
     
     .desktop-nav .logo { 
       font-size: 1.5rem; 
-      font-weight: 800; 
+      font-weight: 900; 
       color: #1a1a1a; 
       display: flex; 
       align-items: center; 
       gap: 10px; 
       letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #33691e 0%, #8bc34a 50%, #66bb6a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .desktop-nav .logo i { 
       font-size: 1.8rem;
@@ -567,8 +589,14 @@
       background: rgba(139, 195, 74, 0.1);
       padding: 8px;
       border-radius: 14px;
+      -webkit-text-fill-color: #8bc34a;
     }
-    .desktop-nav .logo span { color: #8bc34a; }
+    .desktop-nav .logo span { 
+      background: linear-gradient(135deg, #33691e 0%, #8bc34a 50%, #66bb6a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
     
     .desktop-nav .links { 
       display: flex; 
@@ -894,54 +922,51 @@
       to { opacity: 1; transform: translateY(0); } 
     }
 
-    /* --- BANNER PROMO --- */
+    /* --- BANNER PROMO COM IMAGEM DE FUNDO --- */
     .banner-promo {
-      background: linear-gradient(135deg, #33691e 0%, #8bc34a 100%);
+      position: relative;
       border-radius: 24px;
       padding: 32px 35px;
       margin-top: 28px;
       margin-bottom: 36px;
       color: white;
-      position: relative;
       overflow: hidden;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      min-height: 180px;
-      box-shadow: 0 8px 32px rgba(51, 105, 30, 0.25);
+      min-height: 200px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.20);
       transition: all 0.3s ease;
+      background: linear-gradient(135deg, rgba(27, 58, 27, 0.85) 0%, rgba(46, 125, 50, 0.75) 100%);
     }
-    .banner-promo:hover {
-      box-shadow: 0 12px 48px rgba(51, 105, 30, 0.35);
-      transform: translateY(-2px);
-    }
+
+    /* Imagem de fundo do banner */
     .banner-promo::before {
       content: '';
       position: absolute;
-      top: -50%;
-      right: -20%;
-      width: 250px;
-      height: 250px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 50%;
-      pointer-events: none;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1610348725531-843dff563e2c?w=1200&q=80') center/cover no-repeat;
+      z-index: 0;
+      transition: transform 0.6s ease;
     }
+    .banner-promo:hover::before {
+      transform: scale(1.05);
+    }
+
+    /* Overlay escuro sobre a imagem */
     .banner-promo::after {
       content: '';
       position: absolute;
-      bottom: -30%;
-      left: -10%;
-      width: 180px;
-      height: 180px;
-      background: rgba(255,255,255,0.04);
-      border-radius: 50%;
-      pointer-events: none;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 100%);
+      z-index: 1;
     }
+
     .banner-promo .tag {
-      background: rgba(255,255,255,0.18);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      padding: 5px 16px;
+      background: rgba(255,255,255,0.20);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 6px 18px;
       border-radius: 20px;
       font-size: 0.7rem;
       display: inline-block;
@@ -949,7 +974,7 @@
       font-weight: 700;
       letter-spacing: 0.8px;
       text-transform: uppercase;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
       position: relative;
       z-index: 2;
     }
@@ -962,24 +987,26 @@
       position: relative;
       z-index: 2;
       letter-spacing: -0.5px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
     }
     .banner-promo h1 span {
       display: block;
       font-size: 0.9rem;
-      font-weight: 500;
-      opacity: 0.85;
+      font-weight: 400;
+      opacity: 0.9;
       margin-top: 4px;
       letter-spacing: 0.5px;
+      text-shadow: 0 1px 12px rgba(0,0,0,0.25);
     }
     .banner-promo button {
       background: white;
-      color: #33691e;
+      color: #1b3a1b;
       padding: 12px 30px;
       border-radius: 30px;
       font-weight: 700;
       font-size: 0.95rem;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.20);
       position: relative;
       z-index: 2;
       display: inline-flex;
@@ -989,14 +1016,14 @@
     .banner-promo button i { transition: transform 0.3s ease; }
     .banner-promo button:hover {
       transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+      box-shadow: 0 8px 36px rgba(0,0,0,0.30);
     }
     .banner-promo button:hover i { transform: translateX(4px); }
     .banner-img {
       width: 130px;
       height: 130px;
       object-fit: contain;
-      filter: drop-shadow(0 12px 32px rgba(0,0,0,0.25));
+      filter: drop-shadow(0 12px 32px rgba(0,0,0,0.35));
       animation: float 3s ease-in-out infinite;
       position: relative;
       z-index: 2;
@@ -1235,7 +1262,15 @@
     .profile-avatar { width: 90px; height: 90px; background: linear-gradient(135deg, #e8f5e9, #c5e1a5); border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #33691e; position: relative; }
     .profile-avatar .edit-badge { position: absolute; bottom: 0; right: 0; background: #8bc34a; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
     .profile-avatar .edit-badge:hover { transform: scale(1.1); }
-    .profile-header h2 { font-size: 1.4rem; margin-bottom: 5px; font-weight: 700; }
+    .profile-header h2 { 
+      font-size: 1.4rem; 
+      margin-bottom: 5px; 
+      font-weight: 900; 
+      background: linear-gradient(135deg, #33691e 0%, #8bc34a 60%, #66bb6a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
     .profile-header .email { color: #666; font-size: 0.9rem; }
     .profile-header .member-since { color: #999; font-size: 0.75rem; margin-top: 5px; }
     .profile-section-title { color: #999; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; margin: 20px 0 10px; padding-left: 15px; text-transform: uppercase; }
@@ -1459,7 +1494,13 @@
         background-position: center;
       }
       .login-hero .hero-overlay .brand-icon { font-size: 3.6rem; padding: 20px 24px; }
-      .login-hero .hero-overlay h1 { font-size: 2rem; }
+      .login-hero .hero-overlay h1 { 
+        font-size: 2rem; 
+        background: linear-gradient(135deg, #ffffff 0%, #c8e6c9 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
       .login-hero .hero-overlay p { font-size: 1rem; }
       .login-content {
         margin-top: 0;
@@ -1488,15 +1529,21 @@
       }
       .search-area { padding: 0 40px 0; }
       .product-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+      
       .banner-promo { 
-        padding: 40px 50px; 
+        padding: 50px 60px; 
         border-radius: 28px; 
-        min-height: 200px; 
+        min-height: 240px; 
         margin-top: 32px;
         margin-bottom: 40px;
+        box-shadow: 0 12px 48px rgba(0,0,0,0.25);
+      }
+      .banner-promo:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.30);
       }
       .banner-img { width: 160px; height: 160px; }
-      .banner-promo h1 { font-size: 2.6rem; }
+      .banner-promo h1 { font-size: 2.8rem; }
       .banner-promo h1 span { font-size: 1rem; }
       .product-card { padding: 22px; }
       .product-card img { height: 160px; }
@@ -1648,7 +1695,13 @@
       .detail-image-wrapper img { max-height: 150px; }
       .detail-title { font-size: 1.2rem; }
 
-      .splash-logo .brand-name { font-size: 2rem; }
+      .splash-logo .brand-name { 
+        font-size: 2rem; 
+        background: linear-gradient(135deg, #33691e 0%, #8bc34a 50%, #66bb6a 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
       .splash-logo .icon-glass { width: 60px; height: 60px; font-size: 1.8rem; }
       .splash-frame { top: 12px; left: 12px; right: 12px; bottom: 12px; }
       .splash-corner-dot.tl { top: 22px; left: 22px; }
@@ -1691,7 +1744,7 @@
     <div class="splash-content">
       <div class="splash-logo">
         <div class="icon-glass"><i class="fas fa-leaf"></i></div>
-        <div class="brand-name">Avora<span class="highlight">Mart</span></div>
+        <div class="brand-name">AvoraFRUIT</div>
         <div class="brand-sub">Fresh Groceries</div>
       </div>
       <div class="splash-divider-premium">
@@ -1725,7 +1778,7 @@
         <div class="login-hero">
           <div class="hero-overlay">
             <div class="brand-icon"><i class="fas fa-leaf"></i></div>
-            <h1>Avora Mart</h1>
+            <h1>AvoraFRUIT</h1>
             <p>Fresh groceries, delivered to you</p>
           </div>
         </div>
@@ -1733,7 +1786,7 @@
         <!-- CONTENT: parte branca com bordas arredondadas em cima -->
         <div class="login-content">
           <div class="login-brand">
-            <i class="fas fa-leaf"></i> Avora Mart
+            <i class="fas fa-leaf"></i> AvoraFRUIT
           </div>
           <div class="login-header">
             <h1>Fresh groceries<br><span>delivered to you</span></h1>
@@ -1741,7 +1794,7 @@
           </div>
           <div class="input-group">
             <label>Email Address</label>
-            <input type="email" class="blocked" value="cliente@avoramart.com" readonly disabled>
+            <input type="email" class="blocked" value="cliente@avorafruit.com" readonly disabled>
           </div>
           <div class="input-group">
             <label>Password</label>
@@ -1769,7 +1822,7 @@
       <nav class="desktop-nav" id="desktop-header">
         <div class="logo">
           <i class="fas fa-leaf"></i> 
-          Avora<span>Mart</span>
+          <span>AvoraFRUIT</span>
         </div>
         <div class="links">
           <a href="#" class="active" onclick="changeScreen('screen-home', null, true)">
@@ -1984,7 +2037,7 @@
       <div id="screen-profile" class="screen">
         <div class="profile-header">
           <div class="profile-avatar"><i class="fas fa-user"></i><div class="edit-badge"><i class="fas fa-pen"></i></div></div>
-          <h2>Cliente Avora</h2><div class="email">cliente@avoramart.com</div><div class="member-since">Member since 2024</div>
+          <h2>Cliente Avora</h2><div class="email">cliente@avorafruit.com</div><div class="member-since">Member since 2024</div>
         </div>
         <div class="profile-section-title">Account Settings</div>
         <div class="profile-menu">
