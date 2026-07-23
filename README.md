@@ -1,4 +1,4 @@
-# 🌿 Avora Mart
+# 🌿 AvoraFRUIT
 
 > UI Concept de um e-commerce moderno desenvolvido para demonstrar design premium, responsividade e experiência de usuário.
 
