@@ -1794,7 +1794,7 @@
           </div>
           <div class="input-group">
             <label>Email Address</label>
-            <input type="email" class="blocked" value="cliente@avorafruit.com" readonly disabled>
+            <input type="email" class="blocked" value="customer@avorafruit.com" readonly disabled>
           </div>
           <div class="input-group">
             <label>Password</label>
@@ -1858,7 +1858,7 @@
       <header class="mobile-header" id="mobile-header">
         <div class="user-info">
           <h2>
-            Hi, Cliente 
+            Hi, Customer 
             <i class="fas fa-leaf"></i>
           </h2>
           <p>
@@ -2037,7 +2037,7 @@
       <div id="screen-profile" class="screen">
         <div class="profile-header">
           <div class="profile-avatar"><i class="fas fa-user"></i><div class="edit-badge"><i class="fas fa-pen"></i></div></div>
-          <h2>Cliente Avora</h2><div class="email">cliente@avorafruit.com</div><div class="member-since">Member since 2024</div>
+          <h2>Avora Customer</h2><div class="email">customer@avorafruit.com</div><div class="member-since">Member since 2024</div>
         </div>
         <div class="profile-section-title">Account Settings</div>
         <div class="profile-menu">
@@ -2294,11 +2294,11 @@
     document.querySelectorAll('.order-btn').forEach(btn => {
       btn.addEventListener('click', function(e) {
         e.stopPropagation();
-        if (this.textContent.trim() === 'Reorder') alert('🔄 Reordenar item (simulação)');
-        else if (this.textContent.trim() === 'Track Order') alert('📦 Rastrear pedido (simulação)');
+        if (this.textContent.trim() === 'Reorder') alert('🔄 Reorder item (demo)');
+        else if (this.textContent.trim() === 'Track Order') alert('📦 Track order (demo)');
       });
     });
-    document.querySelector('.filter-icon')?.addEventListener('click', function() { alert('🔍 Abrir filtros de pedidos'); });
+    document.querySelector('.filter-icon')?.addEventListener('click', function() { alert('🔍 Open order filters'); });
     document.querySelectorAll('.detail-favorite, .favorite').forEach(el => {
       el.addEventListener('click', function(e) {
         e.stopPropagation();
@@ -2311,7 +2311,7 @@
     document.querySelectorAll('.add-cart').forEach(btn => {
       btn.addEventListener('click', function(e) {
         e.stopPropagation();
-        alert('🛒 Produto adicionado ao carrinho!');
+        alert('🛒 Product added to cart!');
       });
     });
     window.addEventListener('error', function(e) {
